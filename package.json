@@ -1,0 +1,16 @@
+{
+  "name": "vb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.49.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "scss": "sass scss/index.scss:css/style.css --watch --no-source-map",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
