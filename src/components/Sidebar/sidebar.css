@@ -1,0 +1,12 @@
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar {
+    max-height: calc(100vh - 57px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: left;
+}
