@@ -5,7 +5,11 @@ import { Public as PublicRoute } from "./public";
 
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
-import Sidebar from "../components/Sidebar";
+import ProductList from "../pages/Products/productList";
+import ProductDetail from "../pages/Products/productDetail";
+
+// import Sidebar from "../components/Sidebar";
+// import Navbar from "../components/navbar";
 
 const Routes = () => {
 
@@ -24,11 +28,14 @@ const Routes = () => {
   return (
     <Router>
       <main className="main" id="main">
-        <Sidebar />        
+        {/* <Sidebar />        
+        <Navbar /> */}
         <Suspense fallback={<div>Component Loading</div>}>
           <Switch>
             <PublicRoute path="/login" component={Login} exact />
             <PublicRoute path="/dashboard" component={Dashboard} exact />
+            <PublicRoute path="/products" component={ProductList} exact />
+            <PublicRoute path="/products/:id" component={ProductDetail} exact />
 
             {/* <PrivateRoute path="/users" component={Users} exact />
           <PrivateRoute path="/users/:id" component={UserProfile} exact />
