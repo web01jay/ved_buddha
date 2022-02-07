@@ -1,0 +1,17 @@
+// generate min-width sizes classes
+// ==================
+
+@each $width in $widths {
+    .min-w-#{$width} {
+        min-width: ($width +#{$unit});
+    }
+}
+
+// generate font sizes classes
+// ==================
+
+@each $size in $font-sizes {
+    .fs-#{$size} {
+        font-size: $size +#{$unit};
+    }
+}

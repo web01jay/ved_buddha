@@ -29,14 +29,17 @@
     .owl-carousel {
         .owl-item {
             img {
-                max-width: 40vw !important;
+                max-width: 100% !important;
                 max-height: 70vh !important;
                 aspect-ratio: 1;
-                margin: 8vh;
+                margin: 8vh 0;
                 position: relative;
-                left: 5vw;
+                left: 0;
                 object-fit: cover;
                 object-position: center;
+                @include mediaResponsive (md) {
+                    max-height: 100vh !important;
+                }
             }
             .item-description {
                 background-color: #202739;
@@ -44,7 +47,7 @@
                 top: 20%;
                 right: 4%;
                 left: auto;
-                width: 40%;
+                width: 30%;
                 display: block;
                 color: $white;
 
@@ -66,4 +69,9 @@
             }
         }
     }  
+}
+.ved-section {
+    text-align: center;
+    background-color: #283a4f;
+    color: #fff;
 }

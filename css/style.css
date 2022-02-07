@@ -1,3 +1,91 @@
+.min-w-100 {
+  min-width: 100px;
+}
+
+.min-w-115 {
+  min-width: 115px;
+}
+
+.min-w-140 {
+  min-width: 140px;
+}
+
+.fs-1 {
+  font-size: 1px;
+}
+
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-25 {
+  font-size: 25px;
+}
+
+.fs-26 {
+  font-size: 26px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.fs-30 {
+  font-size: 30px;
+}
+
+.fs-35 {
+  font-size: 35px;
+}
+
+.fs-38 {
+  font-size: 38px;
+}
+
+.fs-120 {
+  font-size: 120px;
+}
+
+.fs-180 {
+  font-size: 180px;
+}
+
 html,
 body,
 div,
@@ -349,7 +437,6 @@ a {
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   padding: 2px 2px;
-  border-radius: 10px;
   border: 1px solid #888888;
   z-index: 1;
 }
@@ -378,7 +465,6 @@ a {
   }
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item {
-  border-radius: 10px;
   transition: all 0.3s ease;
   z-index: 3;
   position: relative;
@@ -386,10 +472,19 @@ a {
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item:hover {
   color: #ffffff;
-  background-color: #ef4a4f;
+  background-color: #283a4f;
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item-link {
   padding: 0.25rem 1rem;
+}
+
+.cutom-footer {
+  background-color: #283a4f;
+  color: #fff;
+}
+.cutom-footer img {
+  max-width: 30%;
+  margin: 0 auto;
 }
 
 .hamburger {
@@ -444,7 +539,15 @@ a {
 }
 
 .main {
-  height: 100vh;
+  min-height: calc(100vh - 222px);
+}
+
+.section-spacer {
+  padding: 60px 0;
+}
+
+.breadcumbs-section {
+  background-color: #364e6a;
 }
 
 .banner-section {
@@ -472,14 +575,19 @@ a {
   z-index: -1;
 }
 .banner-section .owl-carousel .owl-item img {
-  max-width: 40vw !important;
+  max-width: 100% !important;
   max-height: 70vh !important;
   aspect-ratio: 1;
-  margin: 8vh;
+  margin: 8vh 0;
   position: relative;
-  left: 5vw;
+  left: 0;
   object-fit: cover;
   object-position: center;
+}
+@media (max-width: 767px) {
+  .banner-section .owl-carousel .owl-item img {
+    max-height: 100vh !important;
+  }
 }
 .banner-section .owl-carousel .owl-item .item-description {
   background-color: #202739;
@@ -487,7 +595,7 @@ a {
   top: 20%;
   right: 4%;
   left: auto;
-  width: 40%;
+  width: 30%;
   display: block;
   color: #ffffff;
 }
@@ -505,4 +613,85 @@ a {
 .banner-section .owl-carousel .owl-nav button span {
   color: #ffffff;
   font-size: 1rem;
+}
+
+.ved-section {
+  text-align: center;
+  background-color: #283a4f;
+  color: #fff;
+}
+
+.contact-card {
+  background-color: #283a4f;
+  color: #fff;
+}
+
+.product-card {
+  padding: 10px;
+  margin: 0 25px 15px 25px;
+  display: block;
+  position: relative;
+}
+.product-card .image-container {
+  position: relative;
+  max-width: 100%;
+  border: 10px solid #283a4f;
+  overflow: hidden;
+  max-height: 240px;
+}
+.product-card .image-container img {
+  height: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+.product-card .image-title {
+  text-align: center;
+  padding-top: 15px;
+  color: #283a4f;
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, 0.25);
+}
+.product-card:hover img {
+  transform: scale(1.2);
+}
+
+.about-section .category-section {
+  padding: 10px;
+  margin: 0 25px 15px 25px;
+  display: block;
+  position: relative;
+}
+.about-section .category-section .image-container {
+  position: relative;
+  max-width: 100%;
+  border: 10px solid #283a4f;
+  overflow: hidden;
+  max-height: 240px;
+}
+.about-section .category-section .image-container img {
+  height: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+.about-section .category-section .category-title {
+  text-align: center;
+  padding-top: 15px;
+  color: #283a4f;
+  transition: all 0.3s ease;
+}
+.about-section .category-section:hover {
+  box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, 0.25);
+}
+.about-section .category-section:hover img {
+  transform: scale(1.2);
 }

@@ -104,28 +104,6 @@
   place-content: center;
 }
 
-// Mixin to generate font sizes classes
-// ==================
-
-@mixin fonts-class-generator($unit) {
-  @each $size in $font-sizes {
-    .fs-#{$size} {
-      font-size: $size +#{$unit};
-    }
-  }
-}
-
-// Mixin to generate widths classes
-// ==================
-
-@mixin widths-class-generator($unit) {
-  @each $width in $widths {
-    .min-w-#{$width} {
-      @include min-width($width+#{$unit});
-    }
-  }
-}
-
 // Number of lines mixin
 @mixin number-of-lines($lines) {
   display: -webkit-box;
