@@ -15,3 +15,12 @@
         font-size: $size +#{$unit};
     }
 }
+
+// generate font weights classes
+// ==================
+
+@each $weight in $weights {
+    .fw-#{$weight} {
+        font-weight: $weight;
+    }
+}
