@@ -15,11 +15,8 @@
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-<<<<<<< HEAD
     "styled-components": "^5.3.3",
-=======
     "sass": "^1.49.7",
->>>>>>> 2226b0a811b087d232d7fd5260e48f23fff210ac
     "web-vitals": "^2.1.4"
   },
   "scripts": {
