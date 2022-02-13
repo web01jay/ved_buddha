@@ -1,4 +1,10 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 
 import Slide01 from "../../assets/images/slide01.jpg";
 import Slide02 from "../../assets/images/slide02.jpg";
@@ -10,9 +16,9 @@ const Home = () => {
       <section className="banner-section position-relative">
         <div className="container">
           <div className="slider">
-            <div className="owl-carousel owl-theme">
-              <div className="item">
-                {/* <img src={Slide01} alt="Slide01" /> */}
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper" loop={true}>
+              <SwiperSlide className="item">
+                <img src={Slide01} alt="Slide01" />
                 <div className="item-description ps-3 pe-5 py-5">
                   <h1 className="fs-22">Pharmaceutical Products</h1>
                   <h6 className="py-4 fs-18">
@@ -24,9 +30,9 @@ const Home = () => {
                     View More
                   </a>
                 </div>
-              </div>
-              <div className="item">
-                {/* <img src={Slide02} alt="Slide02" /> */}
+              </SwiperSlide>
+              <SwiperSlide className="item">
+                <img src={Slide02} alt="Slide02" />
                 <div className="item-description ps-3 pe-5 py-5">
                   <h1 className="fs-22">Nutraceutical Products</h1>
                   <h6 className="py-4 fs-18">
@@ -37,9 +43,9 @@ const Home = () => {
                     View More
                   </a>
                 </div>
-              </div>
-              <div className="item">
-                {/* <img src={Slide03} alt="Slide03" /> */}
+              </SwiperSlide>
+              <SwiperSlide className="item">
+                <img src={Slide03} alt="Slide03" />
                 <div className="item-description ps-3 pe-5 py-5">
                   <h1 className="fs-22">Cosmetic Products</h1>
                   <h6 className="py-4 fs-18">
@@ -50,8 +56,8 @@ const Home = () => {
                     View More
                   </a>
                 </div>
-              </div>
-            </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </section>
@@ -59,7 +65,7 @@ const Home = () => {
         <div className="container">
           <p className="display-6 mb-4 text-center">Pioneers of Ved Buddha</p>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="category-section d-block">
                 <div className="image-container">
                   <img src={Slide02} alt="category" className="mw-100" />
@@ -76,7 +82,7 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="category-section d-block">
                 <div className="image-container">
                   <img src={Slide01} alt="category" className="mw-100" />
@@ -91,7 +97,22 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
+              <div className="category-section d-block">
+                <div className="image-container">
+                  <img src={Slide03} alt="category" className="mw-100" />
+                </div>
+                <p className="category-title fs-20 font-weight-semi-bold">
+                  Mrs. Gunjan Kumari
+                </p>
+                <p className="text-center">
+                  Mrs. Gunjan Kumari is a woman entrepreneur. She believes that
+                  creating health awareness is an effective way to prevent the
+                  spread of diseases affecting the community as a whole.{" "}
+                </p>
+              </div>
+            </div>
+            <div className="col-md-3">
               <div className="category-section d-block">
                 <div className="image-container">
                   <img src={Slide03} alt="category" className="mw-100" />

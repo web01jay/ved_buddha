@@ -5,7 +5,11 @@ import logo from "../assets/images/logo.png"
 
 const Header = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState()
-  const [isMenuOpen, setIsMenuOpen] = useState()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  var toggleMenu = (e) => {
+    e.preventDefault()
+    setIsMenuOpen(!isMenuOpen)
+  }
   return (
     <>
       <header id="header" className="custom-header">
@@ -20,7 +24,8 @@ const Header = () => {
               <button
                 type="button"
                 id="hamburger-1"
-                className="collapsed navbar-toggle hamburger"
+                className={`navbar-toggle hamburger ${isMenuOpen ? ' open ' : ' collapsed '} `}
+                onClick={(e)=>{toggleMenu(e)}}
               >
                 <span className="line"></span>
                 <span className="line"></span>
@@ -28,7 +33,7 @@ const Header = () => {
               </button>
             </div>
             <div
-              className="hide navbar-collapse collapse"
+              className={`navbar-collapse  ${isMenuOpen ? 'open' : ' hide  collapse'} `}
               id="navbar-navigation"
             >
               <ul className="p-0 nav navbar-nav align-items-baseline ms-auto mt-2 mt-lg-0 align-items-md-baseline align-items-lg-center">
@@ -49,7 +54,7 @@ const Header = () => {
                   </Link>
                   <a
                     href=" "
-                    className="dropdown-toggle fa-angle-up ms-2"
+                    className="fa-angle-down fa ms-2 text-black"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"

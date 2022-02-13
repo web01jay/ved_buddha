@@ -420,7 +420,6 @@ a {
 }
 .custom-header .dropdown-toggle::after {
   content: "";
-  /* background-image: url(../../../visitor/assets/icons/DownArrow.svg); */
   height: 10px;
   width: 10px;
   background-repeat: no-repeat;
@@ -442,8 +441,8 @@ a {
 }
 .custom-header .nav-dropdown-link:hover {
   color: #000000;
-  border-left: 3px solid #a8cf45 !important;
-  background-color: rgba(168, 207, 69, 0.1);
+  border-left: 3px solid #000000 !important;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 991px) {
   .custom-header .nav.navbar-nav.login-nav {
@@ -522,7 +521,7 @@ a {
 .hamburger .line {
   width: 30px;
   height: 2px;
-  background-color: #a8cf45;
+  background-color: #283a4f;
   display: block;
   margin: 6px auto;
   -webkit-transition: all 0.3s ease-in-out;
@@ -580,29 +579,25 @@ a {
 
 .banner-section {
   height: calc(100vh - 110px);
+  min-height: 500px;
   width: 100%;
 }
 .banner-section::before {
   content: "";
   width: 100%;
-  height: 50%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #283a4f;
   z-index: -1;
+  background: #364e6a;
+  background: radial-gradient(circle, #364e6a 4%, #202739 89%);
 }
-.banner-section::after {
-  content: "";
-  width: 100%;
-  height: 50%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: #364e6a;
-  z-index: -1;
+.banner-section .swiper {
+  position: relative;
 }
-.banner-section .owl-carousel .owl-item img {
+.banner-section .swiper .swiper-slide.item img {
+  width: 100% !important;
   max-width: 100% !important;
   max-height: 70vh !important;
   aspect-ratio: 1;
@@ -613,11 +608,11 @@ a {
   object-position: center;
 }
 @media (max-width: 767px) {
-  .banner-section .owl-carousel .owl-item img {
+  .banner-section .swiper .swiper-slide.item img {
     max-height: 100vh !important;
   }
 }
-.banner-section .owl-carousel .owl-item .item-description {
+.banner-section .swiper .swiper-slide.item .item-description {
   background-color: #202739;
   position: absolute;
   top: 20%;
@@ -627,10 +622,29 @@ a {
   display: block;
   color: #ffffff;
 }
-.banner-section .owl-carousel .owl-nav {
+.banner-section .swiper .swiper-button-prev,
+.banner-section .swiper .swiper-button-next {
+  position: absolute !important;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  height: 25px;
+  width: 25px;
+  background-color: #283a4f !important;
+  color: #fff;
+}
+.banner-section .swiper .swiper-button-prev::after,
+.banner-section .swiper .swiper-button-next::after {
+  font-size: 12px !important;
+}
+.banner-section .swiper .swiper-button-prev {
+  right: 25px;
+}
+.banner-section .swiper .owl-nav {
   text-align: right;
 }
-.banner-section .owl-carousel .owl-nav button {
+.banner-section .swiper .owl-nav button {
   height: 25px;
   width: 25px;
   background-color: #283a4f !important;
@@ -638,9 +652,28 @@ a {
   align-items: center;
   justify-content: center;
 }
-.banner-section .owl-carousel .owl-nav button span {
+.banner-section .swiper .owl-nav button span {
   color: #ffffff;
   font-size: 1rem;
+}
+.banner-section + .bord-section .category-section {
+  margin: 10px;
+}
+.banner-section + .bord-section .category-section .image-container {
+  height: 250px;
+}
+.banner-section + .bord-section .category-section .image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.banner-section + .bord-section .category-section p.text-center {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .ved-section {

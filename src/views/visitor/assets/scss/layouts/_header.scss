@@ -83,8 +83,8 @@
       border-left: 3px solid transparent !important;
       &:hover{
         color: $black;
-        border-left: 3px solid $light-green !important;
-        background-color: rgba($color: $light-green, $alpha: .1);
+        border-left: 3px solid $black !important;
+        background-color: rgba($color: $black, $alpha: .1);
       }
     }
     
