@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -7,7 +8,7 @@ const Contact = () => {
         <div className="container">
           <div className="section-spacer">
             <p className="text-white display-6 font-weight-700">Contact Us</p>
-            <p className="text-white">Home - Contact Us</p>
+            <p className="text-white"> <Link to="/" className="text-white"> Home </Link>  - Contact Us</p>
           </div>
         </div>
       </section>
@@ -95,7 +96,7 @@ const Contact = () => {
                       </div>
                     </div>
                     <div className="col-lg-12 col-xl-8 offset-xl-2">
-                      <button className="btn">Submit</button>
+                      <button className="btn btn-outline">Submit</button>
                     </div>
                   </div>
                 </form>

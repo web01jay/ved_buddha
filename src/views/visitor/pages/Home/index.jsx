@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import Slide01 from "../../assets/images/slide01.jpg";
 import Slide02 from "../../assets/images/slide02.jpg";
 import Slide03 from "../../assets/images/slide03.jpg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -26,9 +27,9 @@ const Home = () => {
                     VED do care to maintain and restore by the prevention and
                     treatment of illness.
                   </h6>
-                  <a className="border-bottom text-white" href="#">
+                  <Link to="/products/details/1" className="border-bottom text-white">
                     View More
-                  </a>
+                  </Link>
                 </div>
               </SwiperSlide>
               <SwiperSlide className="item">
@@ -39,9 +40,9 @@ const Home = () => {
                     Health is the greatest gift”. Secure your gift with Ved food
                     supplements.
                   </h6>
-                  <a className="border-bottom text-white" href="#">
+                  <Link to="/products/details/15" className="border-bottom text-white">
                     View More
-                  </a>
+                  </Link>
                 </div>
               </SwiperSlide>
               <SwiperSlide className="item">
@@ -52,9 +53,9 @@ const Home = () => {
                     Designed for personal care and skin care to be used to
                     cleanse or protect the body or skin.
                   </h6>
-                  <a className="border-bottom text-white" href="#">
+                  <Link to="/products/details/10" className="border-bottom text-white">
                     View More
-                  </a>
+                  </Link>
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -147,62 +148,41 @@ const Home = () => {
             <div className="row">
               <div className="col-md-4">
                 <a
-                  href="./pages/products.html"
+                  to="/products"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide02} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">Category 1</p>
+                  <p className="category-title">TABLET, CAPSULE, SYRUP</p>
                 </a>
               </div>
               <div className="col-md-4">
                 <a
-                  href="./pages/products.html"
+                  to="/products"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide01} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">Category 2</p>
+                  <p className="category-title">Gel, Ointment, Cream, Lotion</p>
                 </a>
               </div>
               <div className="col-md-4">
                 <a
-                  href="./pages/products.html"
+                  to="/products"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide03} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">Category 3</p>
+                  <p className="category-title">Dental Products</p>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* <script>
-        $(document).ready(function (){" "}
-        {$(".owl-carousel").owlCarousel({
-          loop: true,
-          center: true,
-          margin: 10,
-          nav: true,
-          responsive: {
-            0: {
-              items: 1,
-            },
-            600: {
-              items: 1,
-            },
-            1000: {
-              items: 1,
-            },
-          },
-        })}
-        )
-      </script> */}
     </>
   );
 };

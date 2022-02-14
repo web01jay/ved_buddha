@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 import Slide01 from "../../assets/images/slide01.jpg";
 import Slide02 from "../../assets/images/slide02.jpg";
@@ -11,7 +12,7 @@ const About = () => {
         <div class="container">
           <div class="section-spacer">
             <p class="text-white display-6 font-weight-700">About Ved Buddha</p>
-            <p class="text-white">Home - About Us</p>
+            <p class="text-white"> <Link to="/" className="text-white"> Home </Link> - About Us</p>
           </div>
         </div>
       </section>

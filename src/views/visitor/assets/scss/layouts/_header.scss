@@ -57,7 +57,11 @@
       object-fit: cover;
     }
     .dropdown-toggle{
+      &::before {
+        color: #283a4f;
+      }
       &::after{
+        display: none;
         content: '';
         // background-image: url(../../assets/icons/DownArrow.svg);
         height: 10px;

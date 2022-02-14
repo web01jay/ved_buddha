@@ -44,6 +44,7 @@
                 object-position: center;
                 @include mediaResponsive (md) {
                     max-height: 100vh !important;
+                    height: 70vh;
                 }
             }
             .item-description {
@@ -55,7 +56,13 @@
                 width: 30%;
                 display: block;
                 color: $white;
-
+                @include mediaResponsive(sm) {
+                    background-color: rgba($color: #202739, $alpha: .7);
+                    width: 100%;
+                    right: 0;
+                    bottom: 0;
+                    top: auto;
+                }
             }
         }
         .swiper-button-prev,

@@ -29,6 +29,7 @@ const Routes = () => {
     });
     useEffect(() => {
       setMinHeight();
+      window.scroll(0,0)
     }, []);
 
   return (
@@ -46,7 +47,7 @@ const Routes = () => {
             <PublicRoute path="/about" component={About} exact />
             <PublicRoute path="/contact" component={Contact} exact />
             <PublicRoute path="/products" component={Products} exact />
-            <PublicRoute path="/products/details" component={ProductDetails} exact />
+            <PublicRoute path="/products/details/:pageId" component={ProductDetails} exact />
 
             {/* <PrivateRoute path="/users" component={Users} exact />
           <PrivateRoute path="/users/:id" component={UserProfile} exact />
@@ -54,7 +55,7 @@ const Routes = () => {
           <PrivateRoute path="/form-post" component={FormPost} exact /> */}
 
             <PublicRoute path="/" component={Home} exact />
-            <PublicRoute path={`*`} component={Dashboard} />
+            <PublicRoute path={`*`} component={Home} />
           </Switch>
         </Suspense>
       </main>
