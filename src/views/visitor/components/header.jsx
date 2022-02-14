@@ -90,7 +90,17 @@ const Header = () => {
                   >
                     <li>
                       <Link className="dropdown-item" to="/products">
-                        TABLET, CAPSULE, SYRUP
+                        Tablet
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="/products">
+                        Capsule
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="/products">
+                      Syrup
                       </Link>
                     </li>
                     <li>

@@ -29,7 +29,7 @@ const Products = () => {
         <div className="container">
           <div className="row">
             {pData.map((product, pId) => (
-              <div key={pId}>
+              <div key={pId} className="col-12 col-sm-6 col-lg-4">
                 <Link to={`/products/details/${product.pId}`} className="product-card">
                   <div className="image-container">
                     <img src={Slide01} alt="product image" />

@@ -147,7 +147,7 @@ const Home = () => {
             <p className="display-6 text-center mb-4">Explore Our Products</p>
             <div className="row">
               <div className="col-md-4">
-                <a
+                <Link
                   to="/products"
                   className="category-section d-block"
                 >
@@ -155,10 +155,10 @@ const Home = () => {
                     <img src={Slide02} alt="category" className="mw-100" />
                   </div>
                   <p className="category-title">TABLET, CAPSULE, SYRUP</p>
-                </a>
+                </Link>
               </div>
               <div className="col-md-4">
-                <a
+                <Link
                   to="/products"
                   className="category-section d-block"
                 >
@@ -166,10 +166,10 @@ const Home = () => {
                     <img src={Slide01} alt="category" className="mw-100" />
                   </div>
                   <p className="category-title">Gel, Ointment, Cream, Lotion</p>
-                </a>
+                </Link>
               </div>
               <div className="col-md-4">
-                <a
+                <Link
                   to="/products"
                   className="category-section d-block"
                 >
@@ -177,7 +177,7 @@ const Home = () => {
                     <img src={Slide03} alt="category" className="mw-100" />
                   </div>
                   <p className="category-title">Dental Products</p>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

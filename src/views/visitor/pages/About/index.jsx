@@ -32,16 +32,16 @@ const About = () => {
                     
                     <div class="row">
                         <div class="col-md-6">
-                            <p class="fs-22">Our Mission</p>
+                            <p class="fs-22 d-flex align-items-center"> <sapn className="me-2 fa fa-bullseye fs-15"></sapn> Our Mission</p>
                             <div class="ps-3">
-                                <p class="fs-14">1. CONSISTENT QUALITY</p>
-                                <p class="fs-14">2. ON-TIME DELIVERIES</p>
-                                <p class="fs-14">3. WELL REFINED PROCEDURES</p>
-                                <p class="fs-14">4. COST EFFICIENCY</p>
+                                <p class="fs-14">1. Consistent Quality</p>
+                                <p class="fs-14">2. On-Time Deliveries</p>
+                                <p class="fs-14">3. Well Refined Procedures</p>
+                                <p class="fs-14">4. Cost Efficiency</p>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p class="fs-22">Our Vision</p>
+                            <p class="fs-22 d-flex align-items-center"> <span className="fa fa-eye fs-15 me-2"></span> Our Vision</p>
                             <div class="ps-3">
                                 <div class="d-flex">
                                     <p class="fs-14 me-2">1. </p>
@@ -53,7 +53,7 @@ const About = () => {
                                 </div>
                                 <div class="d-flex">
                                     <p class="fs-14 me-2">3. </p>
-                                    <p class="fs-14">WORKING FOR A HEALTHIER TOMORROW</p>
+                                    <p class="fs-14">Working for a healthier tomorrow</p>
                                 </div>
                             </div>
                         </div>
@@ -63,34 +63,34 @@ const About = () => {
                         <p class="display-6 text-center mb-4">Explore Our Products</p>
                         <div class="row">
                             <div class="col-md-4">
-                                <a href="./products.html" class="category-section d-block">
+                                <Link to="./products" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide02} alt="category" class="mw-100" />
                                     </div>
                                     <p class="category-title">
-                                        Category 1
+                                        Tablet
                                     </p>
-                                </a>
+                                </Link>
                             </div>
                             <div class="col-md-4">
-                                <a href="./products.html" class="category-section d-block">
+                                <Link to="./products" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide01} alt="category" class="mw-100" />
                                     </div>
                                     <p class="category-title">
-                                        Category 2
+                                        Capsule
                                     </p>
-                                </a>
+                                </Link>
                             </div>
                             <div class="col-md-4">
-                                <a href="./products.html" class="category-section d-block">
+                                <Link to="./products" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide03} alt="category" class="mw-100" />
                                     </div>
                                     <p class="category-title">
-                                        Category 3
+                                        Syrup
                                     </p>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
