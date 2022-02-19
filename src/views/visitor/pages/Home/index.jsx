@@ -119,12 +119,10 @@ const Home = () => {
                   <img src={Slide03} alt="category" className="mw-100" />
                 </div>
                 <p className="category-title fs-20 font-weight-semi-bold">
-                  Mrs. Gunjan Kumari
+                  Mr. Rajkumar Singh
                 </p>
                 <p className="text-center">
-                  Mrs. Gunjan Kumari is a woman entrepreneur. She believes that
-                  creating health awareness is an effective way to prevent the
-                  spread of diseases affecting the community as a whole.{" "}
+                Mr. Rajkumar Singh has done his Master’s in Marketing and successfully running his business. After gaining sizeable experience in Pharmaceutical segment, he has started his own set up VED BUDDHA with a vision to become leader in  Pharmaceutical, Food-Supplements and Nutraceuticals Products.
                 </p>
               </div>
             </div>

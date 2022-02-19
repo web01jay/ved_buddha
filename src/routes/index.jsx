@@ -12,6 +12,7 @@ import About from "../views/visitor/pages/About";
 import Contact from "../views/visitor/pages/Contact";
 import Products from "../views/visitor/pages/Products";
 import ProductDetails from "../views/visitor/pages/Products/productDetails";
+import CategoryProducts from "../views/visitor/pages/Products/categoryProduct";
 import { history } from "../history.js";
 
 // import Sidebar from "../components/Sidebar";
@@ -48,6 +49,7 @@ const Routes = () => {
             <PublicRoute path="/contact" component={Contact} exact />
             <PublicRoute path="/products" component={Products} exact />
             <PublicRoute path="/products/details/:pageId" component={ProductDetails} exact />
+            <PublicRoute path="/products/category/:catId" component={CategoryProducts} exact />
 
             {/* <PrivateRoute path="/users" component={Users} exact />
           <PrivateRoute path="/users/:id" component={UserProfile} exact />

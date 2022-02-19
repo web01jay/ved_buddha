@@ -74,58 +74,64 @@ const Header = () => {
                   >
                     Products
                   </Link>
-                  <a
-                    href=" "
+                  <span
                     className="fa-angle-down fa ms-2 text-black dropdown-toggle"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    onClick={(e)=>{toggleCategory(e)}}
-                  >{' '}</a>
-                  <ul
-                    className={`dropdown-menu ${isCategoryOpen ? ' show ' : ''}`}
-                    // className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
+                  >{' '}</span>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                      <Link className="dropdown-item" to="/products">
+                      <Link className="dropdown-item disabled" to="/products">
+                        Pharma
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="/products/category/a">
                         Tablet
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
+                      <Link className="dropdown-item" to="/products/category/b">
                         Capsule
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
-                      Syrup
+                      <Link className="dropdown-item" to="/products/category/c">
+                        External
+                      </Link>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li>
+                      <Link className="dropdown-item disabled" to="/products">
+                        Cosmetic
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
-                        Gel, Ointment, Cream, Lotion
+                      <Link className="dropdown-item" to="/products/category/d">
+                        Soap
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
-                        Dental Products
+                      <Link className="dropdown-item" to="/products/category/e">
+                        Lotion
+                      </Link>
+                    </li>
+                    <div className="dropdown-divider"></div>
+                    <li>
+                      <Link className="dropdown-item disabled" to="/products">
+                        Nutra
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
-                        Ear, Nasal Drops
+                      <Link className="dropdown-item" to="/products/category/f">
+                        Energy Drink
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/products">
-                        Nutraceuticals
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products">
-                        Cosmetics
+                      <Link className="dropdown-item" to="/products/category/g">
+                        Protein Powder
                       </Link>
                     </li>
                   </ul>

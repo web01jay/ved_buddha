@@ -14,9 +14,14 @@ const ProductDetails = () => {
   useEffect(() => {
     setPData(pDataArray);
   }, []);
+
+  let splitDescription = (str) => {
+    let arr = str.split("\n")
+    return arr
+  }
+
   return (
     <>
-      {/* .filter((e) => e.title === condition) */}
       <section className="breadcumbs-section position-relative">
         <div className="container">
           <div className="section-spacer">
@@ -42,7 +47,6 @@ const ProductDetails = () => {
           <div>
             {pData.map((product, pId) => (
               <div className="row" key={pId}>
-                {/* <div className={product.pId == pageId ? "d-block" : "d-none"}>kkjnkjnkjk</div> */}
                 {product.pId == pageId ? (
                   <>
                     <div className="col-md-6 col-lg-5">
@@ -53,10 +57,12 @@ const ProductDetails = () => {
                     <div className="col-md-6 col-lg-7">
                       <div className="d-flex flex-column ps-0 ps-md-3">
                         <h3 className="display-6">{product.pName}</h3>
-                        <b className="mb-3">{product.cName}</b>
-                        <p className="mb-3">
-                          {product.pDescription ? product.pDescription : " "}
-                        </p>
+                        <b className="mb-3">{product.cName} : {product.subCName ? product.subCName : ''} </b>
+                        <div className="mb-3">
+                          {splitDescription(product.pDescription).map((desc) => (
+                            <p className="mb-0">{desc}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </>
@@ -65,38 +71,6 @@ const ProductDetails = () => {
                 )}
               </div>
             ))}
-            {/* <div className="col-md-6 col-lg-5">
-              <div className="image-container">
-                <img src={Slide01} alt="" className="mw-100" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-7">
-              <div className="d-flex flex-column ps-0 ps-md-3">
-                <h3 className="display-6">Product Details</h3>
-                <b className="mb-3">Category 1</b>
-                <p className="mb-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consectetur autem illo doloremque ratione eos aspernatur
-                  reprehenderit culpa error sequi veritatis, architecto hic
-                  aperiam adipisci, distinctio saepe facere molestiae omnis.
-                  Quo?
-                </p>
-                <p className="mb-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consectetur autem illo doloremque ratione eos aspernatur
-                  reprehenderit culpa error sequi veritatis, architecto hic
-                  aperiam adipisci, distinctio saepe facere molestiae omnis.
-                  Quo?
-                </p>
-                <p className="mb-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consectetur autem illo doloremque ratione eos aspernatur
-                  reprehenderit culpa error sequi veritatis, architecto hic
-                  aperiam adipisci, distinctio saepe facere molestiae omnis.
-                  Quo?
-                </p>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

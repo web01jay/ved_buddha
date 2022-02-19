@@ -2,6 +2,11 @@ import React, {useEffect} from "react";
 import { Route, Redirect } from "react-router-dom";
 import "../assets/css/visitor.css";
 
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/bootstrap/dist/js/bootstrap.js';
+import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+import '../../node_modules/bootstrap/dist/js/bootstrap.esm.js';
+
 import Header from "../views/visitor/components/header";
 import Footer from "../views/visitor/components/footer";
 

@@ -56,6 +56,12 @@
       border-radius: 50%;
       object-fit: cover;
     }
+    .dropdown-item {
+      &.disabled {
+        background-color: #283a4f55;
+        color: #283a4f !important;
+      }
+    }
     .dropdown-toggle{
       &::before {
         color: #283a4f;
