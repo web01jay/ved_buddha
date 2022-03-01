@@ -146,35 +146,35 @@ const Home = () => {
             <div className="row">
               <div className="col-md-4">
                 <Link
-                  to="/products"
+                  to="/products/category/a"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide02} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">TABLET, CAPSULE, SYRUP</p>
+                  <p className="category-title">TABLET</p>
                 </Link>
               </div>
               <div className="col-md-4">
                 <Link
-                  to="/products"
+                  to="/products/category/b"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide01} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">Gel, Ointment, Cream, Lotion</p>
+                  <p className="category-title">Capsule</p>
                 </Link>
               </div>
               <div className="col-md-4">
                 <Link
-                  to="/products"
+                  to="/products/category/d"
                   className="category-section d-block"
                 >
                   <div className="image-container">
                     <img src={Slide03} alt="category" className="mw-100" />
                   </div>
-                  <p className="category-title">Dental Products</p>
+                  <p className="category-title">Soap</p>
                 </Link>
               </div>
             </div>

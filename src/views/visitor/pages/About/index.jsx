@@ -63,7 +63,7 @@ const About = () => {
                         <p class="display-6 text-center mb-4">Explore Our Products</p>
                         <div class="row">
                             <div class="col-md-4">
-                                <Link to="./products" class="category-section d-block">
+                                <Link to="/products/category/a" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide02} alt="category" class="mw-100" />
                                     </div>
@@ -73,7 +73,7 @@ const About = () => {
                                 </Link>
                             </div>
                             <div class="col-md-4">
-                                <Link to="./products" class="category-section d-block">
+                                <Link to="/productscategory/b" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide01} alt="category" class="mw-100" />
                                     </div>
@@ -83,12 +83,12 @@ const About = () => {
                                 </Link>
                             </div>
                             <div class="col-md-4">
-                                <Link to="./products" class="category-section d-block">
+                                <Link to="/products/category/d" class="category-section d-block">
                                     <div class="image-container">
                                         <img src={Slide03} alt="category" class="mw-100" />
                                     </div>
                                     <p class="category-title">
-                                        Syrup
+                                        Soap
                                     </p>
                                 </Link>
                             </div>

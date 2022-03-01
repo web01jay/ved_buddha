@@ -68,19 +68,17 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item float-right mx-xl-2 mx-xxl-3 my-2 my-lg-0 dropdown">
-                  <Link
-                    className="navbar-nav-link font-medium"
-                    to="/products"
-                  >
-                    Products
-                  </Link>
-                  <span
-                    className="fa-angle-down fa ms-2 text-black dropdown-toggle"
+                  <a
+                    href={(e)=>{e.preventDefault()}}
+                    className="navbar-nav-link font-medium dropdown-toggle"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                  >{' '}</span>
+                  >
+                    Products
+                    <span className="fa-angle-down fa ms-2 text-black">{' '}</span>
+                  </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
                       <Link className="dropdown-item disabled" to="/products">

@@ -13,7 +13,7 @@ import Contact from "../views/visitor/pages/Contact";
 import Products from "../views/visitor/pages/Products";
 import ProductDetails from "../views/visitor/pages/Products/productDetails";
 import CategoryProducts from "../views/visitor/pages/Products/categoryProduct";
-import { history } from "../history.js";
+// import { history } from "../history.js";
 
 // import Sidebar from "../components/Sidebar";
 // import Navbar from "../components/navbar";
@@ -34,7 +34,7 @@ const Routes = () => {
     }, []);
 
   return (
-    <Router history={history}>
+    <Router>
       <main className="main" id="main">
         {/* <Sidebar />        
         <Navbar /> */}

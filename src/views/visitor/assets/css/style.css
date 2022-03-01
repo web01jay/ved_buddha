@@ -716,6 +716,11 @@ a {
   color: #fff;
 }
 
+.mapDiv {
+  width: 100%;
+  height: 450px;
+}
+
 .product-card {
   padding: 10px;
   margin: 0 25px 15px 25px;

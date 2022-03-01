@@ -22,37 +22,9 @@ const Footer = () => {
                 <p className="text-center">VISION TO ERASE DISEASE</p>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 text-center text-md-start">
-              <p className="mb-0 font-weight-semi-bold">Quick Products Links</p>
-              <div className="py-1">
-              {pData.slice(0, 3).map((product, pId) => (
-                  <Link
-                    key={pId}
-                    to={`/products/details/${product.pId}`}
-                    className="text-white d-block"
-                  >
-                    {product.pName}
-                  </Link>
-              ))}
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3 text-center text-md-start">
-              <p className="mb-0 font-weight-semi-bold">Quick Products Links</p>
-              <div className="py-1">
-              {pData.slice(4, 7).map((product, pId) => (
-                  <Link
-                    key={pId}
-                    to={`/products/details/${product.pId}`}
-                    className="text-white d-block"
-                  >
-                    {product.pName}
-                  </Link>
-              ))}
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3 text-center text-md-start">
+            <div className="col-md-6 col-lg-3 offset-lg-6 text-center text-md-start">
               <p className="mb-0 font-weight-semi-bold">
-                Quick contact details
+                Contact details
               </p>
               <div className="py-1">
                 <p className="d-flex justify-content-center justify-content-md-start">
