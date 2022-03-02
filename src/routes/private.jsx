@@ -31,7 +31,7 @@ export const Private = ({ component: Component, path, exact, ...rest }) => {
               ></script>
             </>
           ) : (
-            <Redirect to="/dashboard" />
+            <Redirect to="/" />
           );
         }}
       />

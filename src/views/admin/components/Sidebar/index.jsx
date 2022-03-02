@@ -32,7 +32,7 @@ const Sidebar = () => {
             {/* <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library --> */}
             <li className="nav-item">
-              <Link to="/dashboard" className="nav-link active">
+              <Link to="/admin/dashboard" className="nav-link active">
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -41,7 +41,7 @@ const Sidebar = () => {
             </li>
             
             <li className="nav-item">
-              <Link to="/products" className="nav-link">
+              <Link to="/admin/products" className="nav-link">
                 <i className="nav-icon fas fa-tree"></i>
                 <p>
                   Produsts

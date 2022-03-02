@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import DataTable from 'react-data-table-component';
-import { columns, listData } from './productData';
+import { columns, listData, newProductDetails } from './productData';
 
 const ProductList = () => {
   
@@ -14,12 +14,10 @@ const ProductList = () => {
 
   useEffect(() => {
     // set state
-    setProducts(listData);
+    setProducts(newProductDetails);
     setColumn(columns)
   }, []);
   
-
-
   return (
     <div className="content-section">
       {/* content title */}
@@ -35,6 +33,7 @@ const ProductList = () => {
         <DataTable
             columns={column}
             data={products}
+            pagination
         />
         </div>
       </div>

@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 // import Slide01 from "../../assets/images/slide01.jpg";
 import Slide01 from "../../../visitor/assets/images/slide01.jpg";
+import { newProductDetails } from "./productData";
 
 const ProductDetail = () => {
+  const { pId } = useParams();
   const [product, setProduct] = useState();
+  useEffect(()=> {
+    // => [...product, newProductDetails]
+    const pData = (async () => {
+      await setProduct(newProductDetails[pId])
+      return product
+    })
+    
+    console.log(newProductDetails, "newProductDetails")
+    console.log(pId)
+    console.log(pData)
+  },[])
 
   return (
     <section className="content-section">
@@ -15,6 +29,18 @@ const ProductDetail = () => {
       </div>
       <div className="content-body">
         <div className="container-fluid">
+          <div className="card mx-3">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-md-4">
+                  <p>Product Name</p>
+                </div>
+                <div className="col-md-8">
+                  {/* <p>{product.pName}</p> */}
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-4">
               <label htmlFor="pName">Product Name</label>

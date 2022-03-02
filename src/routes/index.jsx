@@ -13,10 +13,6 @@ import Contact from "../views/visitor/pages/Contact";
 import Products from "../views/visitor/pages/Products";
 import ProductDetails from "../views/visitor/pages/Products/productDetails";
 import CategoryProducts from "../views/visitor/pages/Products/categoryProduct";
-// import { history } from "../history.js";
-
-// import Sidebar from "../components/Sidebar";
-// import Navbar from "../components/navbar";
 
 const Routes = () => {
 
@@ -43,7 +39,7 @@ const Routes = () => {
             <PrivateRoute path="/admin/login" component={Login} exact />
             <PrivateRoute path="/admin/dashboard" component={Dashboard} exact />
             <PrivateRoute path="/admin/products" component={ProductList} exact />
-            <PrivateRoute path="/admin/products/:id" component={ProductDetail} exact />
+            <PrivateRoute path="/admin/products/:pId" component={ProductDetail} exact />
 
             <PublicRoute path="/about" component={About} exact />
             <PublicRoute path="/contact" component={Contact} exact />

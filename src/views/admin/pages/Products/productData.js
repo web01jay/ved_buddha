@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { pDataArray } from "../../../visitor/pages/Products/productData";
 
 export const columns = [
   {
     name: "Sr. No.",
-    selector: (row) => row.id,
+    selector: (row) => row.pId,
     sortable: true,
   },
   {
     name: "Product Name",
-    selector: (row) => row.title,
+    selector: (row) => row.pName,
     sortable: true,
   },
   {
     name: "Category",
-    selector: (row) => row.category,
+    selector: (row) => row.cName,
     sortable: true,
   },
   {
@@ -23,7 +24,7 @@ export const columns = [
     cell: (row) => {
       return (
         <>
-          <Link to={`/products/${row.id}`} className="mr-2"> View </Link>
+          <Link to={`/admin/products/${row.pId}`} className="mr-2"> View </Link>
           <a
             href={(e) => {
               e.preventDefault();
@@ -68,6 +69,8 @@ export const listData = [
     category: "Analgesic",
   },
 ];
+
+export const newProductDetails = pDataArray
 
 export const productDetails = [
   {
