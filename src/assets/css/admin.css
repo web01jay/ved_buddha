@@ -18,3 +18,7 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.editorClass {
+    min-height: 100px;
+}

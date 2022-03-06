@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./sidebar.css"
 import Logo from "../../dist/img/logo.png"
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
+  const [activeTab, setActiveTab] = useState();
+
+  function changeTab (String, e) {
+    setActiveTab(String)
+    e.preventDefault();
+  }
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* <!-- Brand Logo --> */}
@@ -29,44 +36,62 @@ const Sidebar = () => {
             role="menu"
             data-accordion="false"
           >
-            {/* <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library --> */}
-            <li className="nav-item">
-              <Link to="/admin/dashboard" className="nav-link active">
-                <i className="nav-icon fas fa-tachometer-alt"></i>
+            <li className="nav-item" onClick={()=>{changeTab('dashboard')}}>
+              <Link to="/admin/dashboard" className={`nav-link ${activeTab == 'dashboard' ? 'active' : ''}`}>
                 <p>
                   Dashboard
                 </p>
               </Link>
             </li>
+
+            <li className="nav-item" onClick={()=>{changeTab('homeBanner')}}>
+              <Link to="/admin/home-banner" className={`nav-link ${activeTab == 'homeBanner' ? 'active' : ''}`}>
+                <p>
+                  Home Banner
+                </p>
+              </Link>
+            </li>
+
+            <li className="nav-item" onClick={()=>{changeTab('homePioneers')}}>
+              <Link to="/admin/home-pioneers" className={`nav-link ${activeTab == 'homePioneers' ? 'active' : ''}`}>
+                <p>
+                  Home Pioneers
+                </p>
+              </Link>
+            </li>
+
+            <li className="nav-item" onClick={()=>{changeTab('categories')}}>
+              <Link to="/admin/categories" className={`nav-link ${activeTab == 'categories' ? 'active' : ''}`}>
+                <p>
+                  Categories
+                </p>
+              </Link>
+            </li>
+
+            <li className="nav-item" onClick={()=>{changeTab('subCategories')}}>
+              <Link to="/admin/sub-categories" className={`nav-link ${activeTab == 'subCategories' ? 'active' : ''}`}>
+                <p>
+                  Sub Categories
+                </p>
+              </Link>
+            </li>
             
-            <li className="nav-item">
-              <Link to="/admin/products" className="nav-link">
-                <i className="nav-icon fas fa-tree"></i>
+            <li className="nav-item" onClick={()=>{changeTab('products')}}>
+              <Link to="/admin/products" className={`nav-link ${activeTab == 'products' ? 'active' : ''}`}>
                 <p>
                   Produsts
                 </p>
-              </Link>
-              
+              </Link>  
             </li>
             
             
-            <li className="nav-item">
-              <a href={(e)=>{e.preventDefault()}} className="nav-link">
-                <i className="far fa-user nav-icon"></i>
-                <p>
-                  About
-                </p>
-              </a>
-            </li>
 
-            <li className="nav-item">
-              <a href={(e)=>{e.preventDefault()}} className="nav-link">
-                <i className="nav-icon far fa-envelope"></i>
+            <li className="nav-item" onClick={()=>{changeTab('conatact')}}>
+              <Link to="/admin/dashboard" className={`nav-link ${activeTab == 'conatact' ? 'active' : ''}`}>
                 <p>
-                  Conatact
+                  Conatact Messages
                 </p>
-              </a>
+              </Link>
             </li>
 
           </ul>

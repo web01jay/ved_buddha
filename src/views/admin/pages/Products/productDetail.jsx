@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 // import Slide01 from "../../assets/images/slide01.jpg";
@@ -10,91 +11,83 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   useEffect(()=> {
     // => [...product, newProductDetails]
-    const pData = (async () => {
-      await setProduct(newProductDetails[pId])
-      return product
-    })
+    setProduct(newProductDetails[pId])
     
     console.log(newProductDetails, "newProductDetails")
     console.log(pId)
-    console.log(pData)
+    console.log(product)
   },[])
 
   return (
     <section className="content-section">
       <div className="content-header">
         <div className="container-fluid">
-          <h1 className="mb-2">Product Detail</h1>
+          <div className="row">
+            <div className="col-md-6">
+              <h1 className="mb-2">Product Detail</h1>
+            </div>
+            <div className="col-md-6">
+              <div className="w-100 text-md-right">
+                <Link to={`/admin/products/${pId}/edit`} className="btn btn-primary">Edit Product</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="content-body">
         <div className="container-fluid">
           <div className="card mx-3">
             <div className="card-body">
+              
               <div className="row">
                 <div className="col-md-4">
                   <p>Product Name</p>
                 </div>
                 <div className="col-md-8">
-                  {/* <p>{product.pName}</p> */}
+                  <p>Product Naame</p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <label htmlFor="pName">Product Name</label>
-            </div>
-            <div className="col-md-8">
-              <div className="form-group mb-3 mb-md-4">
-                <input
-                  type="text"
-                  name="pName"
-                  id="pName"
-                  className="form-control"
-                />
+
+              <div className="row">
+                <div className="col-md-4">
+                  <p>Product Category</p>
+                </div>
+                <div className="col-md-8">
+                  <p>Product Category</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <label htmlFor="pCategory">Product Category</label>
-            </div>
-            <div className="col-md-8">
-              <div className="form-group mb-3 mb-md-4">
-                <input
-                  type="text"
-                  name="pCategory"
-                  id="pCategory"
-                  className="form-control"
-                />
+
+              <div className="row">
+                <div className="col-md-4">
+                  <p>Product Sub Category</p>
+                </div>
+                <div className="col-md-8">
+                  <p>Product Sub Category</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <label htmlFor="pDescription">Product Description</label>
-            </div>
-            <div className="col-md-8">
-              <div className="form-group mb-3 mb-md-4">
-                <textarea
-                  name="pDescription"
-                  id="pDescription"
-                  className="form-control"
-                ></textarea>
+
+              <div className="row">
+                <div className="col-md-4">
+                  <p>Product Description</p>
+                </div>
+                <div className="col-md-8">
+                  <p>Product Description</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <label htmlFor="">Product Image</label>
-            </div>
-            <div className="col-md-8">
-              <div className="mw-25">
-                <img src={Slide01} className="mw-100" />
+
+              <div className="row">
+                <div className="col-md-4">
+                  <p>Product Image</p>
+                </div>
+                <div className="col-md-8">
+                  <img src="https://dummyimage.com/500x500/000/fff&text=Image" alt="product image" height="100px" width="100px" />
+                </div>
               </div>
+
+
             </div>
           </div>
+          
         </div>
       </div>
     </section>
