@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { API_URL } from '../../../DataHelpers/API_URL';
 
 const HomePioneers = () => {
+    const [pioneers, setPioneers] = useState([]);
+    const [isLoading, setIsLoading] = useState()
+
+    useEffect(()=>{
+        setIsLoading(true)  
+        // axios call
+        axios({
+            method: "get",
+            url: `${API_URL}/banner`,
+            responseType: "stream"
+        }).then(function (response) {
+            setIsLoading(true)
+            setPioneers(response.data.data)
+            console.log(response.data.data, "response")
+            console.log(pioneers, "pioneers")
+            setIsLoading(false)
+        })
+    },[])
   return (
+      <>
+      {isLoading === true ? (
+          <div className="py-5 text-center">Loading ...</div>
+      ) : (
     <section className='content-section'>
         <div className="content-header">
             <div className="container-fluid">
@@ -22,7 +46,8 @@ const HomePioneers = () => {
         </div>
         <div className="content-body">
             <div className="container-fluid">
-                <div className='card'>
+                {pioneers && pioneers.map((pioneer, index)=>{return(
+                <div className='card' key={index}>
                     <div className="card-header">
                         <div className="row">
                             <div className="col-md-6">
@@ -33,6 +58,9 @@ const HomePioneers = () => {
                                     <Link to="/admin/home-pioneers/edit" className="btn btn-primary ml-2  ">
                                         Edit Pioneer
                                     </Link>        
+                                    <button className="btn btn-primary ml-2">
+                                        Delete Pioneer
+                                    </button>        
                                 </div>
                             </div>
                         </div>
@@ -45,7 +73,7 @@ const HomePioneers = () => {
                             </div>
                             <div className='col-md-8'>
                                 <p>
-                                    Pioneer Name
+                                    Pioneer Name {pioneer.name}
                                 </p>
                             </div>
 
@@ -68,9 +96,12 @@ const HomePioneers = () => {
                         </div>
                     </div>
                 </div>
+                )})}
             </div>
         </div>
     </section>
+    )}
+    </>
   )
 }
 

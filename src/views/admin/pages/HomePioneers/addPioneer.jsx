@@ -4,10 +4,9 @@ import * as Yup from "yup";
 import axios from 'axios';
 import { API_URL } from '../../../DataHelpers/API_URL';
 
-const EditPioneers = () => {
+const AddPioneers = () => {
 
-    const [isSubmitting, setIsSubmitting] = useState();
-    const [currentBanner, setCurrentBanner] = useState()
+    const [isSubmitting, setIsSubmitting] = useState();    
     const [imageFile, setImageFile] = useState();
     const SUPPORTED_FORMATS  = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
     const pioneerSchema = Yup.object().shape({
@@ -16,25 +15,6 @@ const EditPioneers = () => {
         // pioneerImage: Yup.mixed().test('fileType', "Unsupported File Format", value => {SUPPORTED_FORMATS.includes(value.type)})
     });
 
-    
-    useEffect(()=>{
-        setIsSubmitting(true)  
-        // axios call
-        axios({
-            method: "get",
-            url: `${API_URL}/banner`,
-            responseType: "stream"
-        }).then(function (response) {
-            setIsSubmitting(true)
-            setCurrentBanner(response.data.data)
-            console.log(currentBanner, "banners")
-            // console.log(response.data.data)
-            // console.log(currentBanner)
-            setIsSubmitting(false)
-        })
-    },[])
-
-    
     const fileSelected = (event)=> {setImageFile(event.target.files[0])}
 
   return (
@@ -47,7 +27,7 @@ const EditPioneers = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6">
-                        <h1 className="mb-0">Edit Home Banner</h1>
+                        <h1 className="mb-0">Add Home Banner</h1>
                     </div>
                 </div>
             </div>
@@ -72,7 +52,7 @@ const EditPioneers = () => {
                                 const pioneer = await axios.post(`${API_URL}/banner`, {
                                     name: values.pioneerName,
                                     description: values.pioneerDescription,
-                                    // bannerImage: imageFile,
+                                    bannerImage: imageFile,
                                 })
                                 console.log(pioneer)
                                 alert("data added")
@@ -134,4 +114,4 @@ const EditPioneers = () => {
   )
 }
 
-export default EditPioneers
+export default AddPioneers

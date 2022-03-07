@@ -11,6 +11,7 @@ import HomeBanner from "../views/admin/pages/HomeBanner";
 import AddBanner from "../views/admin/pages/HomeBanner/addBanner";
 import EditBanner from "../views/admin/pages/HomeBanner/editBanner";
 import HomePioneers from "../views/admin/pages/HomePioneers";
+import AddPioneers from "../views/admin/pages/HomePioneers/addPioneer";
 import EditPioneers from "../views/admin/pages/HomePioneers/editPioneers";
 import Categories from "../views/admin/pages/Categories";
 import EditCategories from "../views/admin/pages/Categories/editCategories";
@@ -57,7 +58,7 @@ const Routes = () => {
             <PrivateRoute path="/admin/home-banner/add" component={AddBanner} exact />
             <PrivateRoute path="/admin/home-banner/:bId/edit" component={EditBanner} exact />
             <PrivateRoute path="/admin/home-pioneers" component={HomePioneers} exact />
-            <PrivateRoute path="/admin/home-pioneers/add" component={EditPioneers} exact />
+            <PrivateRoute path="/admin/home-pioneers/add" component={AddPioneers} exact />
             <PrivateRoute path="/admin/home-pioneers/edit" component={EditPioneers} exact />
             <PrivateRoute path="/admin/categories" component={Categories} exact />
             <PrivateRoute path="/admin/categories/edit" component={EditCategories} exact />
