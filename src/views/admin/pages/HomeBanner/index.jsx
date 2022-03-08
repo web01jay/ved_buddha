@@ -13,7 +13,7 @@ const HomeBanner = () => {
         axios({
             method: "get",
             url: `${API_URL}/banner`,
-            responseType: "stream"
+            // responseType: "stream"
         }).then(function (response) {
             setIsLoading(true)
             setBanners(response.data.data)
@@ -88,7 +88,7 @@ const HomeBanner = () => {
                                         </div>
                                         <div className='col-md-8'>
                                             <p>
-                                                Banner Link
+                                                {banner.link ?? '-'}
                                             </p>
                                         </div>
 

@@ -3,8 +3,10 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
 import { API_URL } from '../../../DataHelpers/API_URL';
+import { useHistory } from 'react-router-dom';
 
 const AddBanner = () => {
+	const history = useHistory();
     const [isSubmitting, setIsSubmitting] = useState();
     const [imageFile, setImageFile] = useState();
     const SUPPORTED_FORMATS  = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
@@ -50,15 +52,33 @@ const AddBanner = () => {
                             setIsSubmitting(true)
                             try {
                                 console.log(values)
-                                const postBanner = await axios.put(`${API_URL}/banner`, {
-                                    title: values.bannerTitle,
-                                    description: values.bannerDescription,
-                                    bannerLink: values.bannerLink,
-                                    // bannerImage: imageFile,
-                                })
+                                // const postBanner = await axios.put(`${API_URL}/banner`, {
+                                //     title: values.bannerTitle,
+                                //     description: values.bannerDescription,
+                                //     bannerLink: values.bannerLink,
+                                //     // bannerImage: imageFile,
+                                // })
+                                let formData = new FormData();
+
+                                // formData.append('_method', "put");
+                                formData.append('title', values.bannerTitle);
+                                formData.append('description', values.bannerDescription);
+                                formData.append('link', values.bannerLink);
+                                formData.append('image', imageFile);
                                 
-                                console.log(postBanner)
-                                alert("data added")
+                                const postBanner = await axios.post(`${API_URL}/banner`, formData).then(res => {
+									    // check if the request is successful
+									console.log('res', res);
+									history.push('/admin/home-banner');
+								})
+								.catch(function (error){
+								console.log('error', error);
+								});
+                                
+								console.log(postBanner)
+								
+                                // console.log(postBanner)
+                                // alert("data added")
                             } catch (err) {
                                 console.log(err)
                             }
@@ -76,7 +96,7 @@ const AddBanner = () => {
                                         <div className="col-md-8">
                                             <div className="form-group mb-3">
                                                 <Field className="form-control" name="bannerTitle" id="bannerTitle" />
-                                                <ErrorMessage name='bannerTitle' />
+                                                <ErrorMessage name='bannerTitle' className="text-danger" component='p' />
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +108,7 @@ const AddBanner = () => {
                                         <div className="col-md-8">
                                             <div className="form-group mb-3">
                                                 <Field className="form-control" name="bannerDescription" id="bannerDescription" />
-                                                <ErrorMessage name='bannerDescription' />
+                                                <ErrorMessage name='bannerDescription' className="text-danger" component='p' />
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +120,7 @@ const AddBanner = () => {
                                         <div className="col-md-8">
                                             <div className="form-group mb-3">
                                                 <Field className="form-control" name="bannerLink" id="bannerLink" />
-                                                <ErrorMessage name='bannerLink' />
+                                                <ErrorMessage name='bannerLink' className="text-danger" component='p' />
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +131,15 @@ const AddBanner = () => {
                                         </div>
                                         <div className="col-md-8">
                                             <div className="form-group mb-3">
-                                                {/* <input type="file" name="bannerImage" id="bannerImage" className="form-control" onChange={(event)=>{fileSelected(event)}} /> */}
+											{/* <input type="file" name="bannerImage" id="bannerImage" className="form-control" onChange={(event)=>{fileSelected(event)}} /> */}
+											<Field 
+												type="file"
+												name="bannerImage"
+												id="bannerImage"
+												className="form-control"
+												onChange={(e) => { setImageFile(e.target.files[0]) }}
+											/>
+											<ErrorMessage name='bannerImage' className="text-danger" component='p' />
                                             </div>
                                         </div>
                                     </div>
