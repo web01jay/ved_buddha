@@ -5,17 +5,17 @@ import { pDataArray } from "../../../visitor/pages/Products/productData";
 export const columns = [
   {
     name: "Sr. No.",
-    selector: (row) => row.pId,
+    selector: (row) => row.id,
     sortable: true,
   },
   {
     name: "Product Name",
-    selector: (row) => row.pName,
+    selector: (row) => row.name,
     sortable: true,
   },
   {
     name: "Category",
-    selector: (row) => row.cName,
+    selector: (row) => row.category_id,
     sortable: true,
   },
   {
@@ -24,8 +24,8 @@ export const columns = [
     cell: (row) => {
       return (
         <>
-          <Link to={`/admin/products/${row.pId}`} className="mr-2"> View </Link>
-          <Link to={`/admin/products/${row.pId}/edit`} className="mr-2"> Edit </Link>
+          <Link to={`/admin/products/${row.id}`} className="mr-2"> View </Link>
+          <Link to={`/admin/products/${row.id}/edit`} className="mr-2"> Edit </Link>
           <a
             href={(e) => {
               e.preventDefault();

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import DataTable from 'react-data-table-component';
 import { columns, listData, newProductDetails } from './productData';
+import axios from 'axios';
+import { API_URL } from '../../../DataHelpers/API_URL';
 
 const ProductList = () => {
-  
+
   // define state
   const [products, setProducts] = useState();
   const [column, setColumn] = useState();
@@ -13,9 +15,19 @@ const ProductList = () => {
   const history = useHistory();
 
   useEffect(() => {
+
+    // axios api call to get all products
+    axios({
+      method: "get",
+      url: `${API_URL}/product`,
+    }).then(function (response) {
+      setProducts(response.data.data)
+      setColumn(columns)
+    });
+
     // set state
-    setProducts(newProductDetails);
-    setColumn(columns)
+    // setProducts(newProductDetails);
+    // setColumn(columns)
   }, []);
   
   return (

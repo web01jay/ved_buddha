@@ -5,6 +5,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const EditProducts = () => {
     const [category, setCategory] = useState(null);
+    const [subCategory, setSubCategory] = useState(null);
     const [editorState, setEditorState] = useState();
     const categoryOptions = [
         { value: 'chocolate', label: 'Chocolate' },
