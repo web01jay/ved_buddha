@@ -5,27 +5,28 @@ import { API_URL, IMAGE_URL } from '../../../DataHelpers/API_URL';
 
 const HomeBanner = () => {
     const [banners, setBanners] = useState();
-    const [isLoading, setIsLoading] = useState()
+    const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(()=>{
-        setIsLoading(true)  
-        // axios call
-        axios({
-            method: "get",
-            url: `${API_URL}/banner`,
-            // responseType: "stream"
-        }).then(function (response) {
-            setIsLoading(true)
-            setBanners(response.data.data)
-            console.log(banners, "banners")
-            setIsLoading(false)
-        })
-    },[])
-    const deleteBanner = (bannerID) => {
-        // axios.delete(`${API_URL}/banner/${bannerID}`)
-        //     .then( res => console.log(res))
-        //     .catch( err => console.log(err))
-        console.log("delete product")
+	useEffect(() => {
+		// setIsLoading(true)
+		// axios call
+		axios({
+			method: "get",
+			url: `${API_URL}/banner`,
+			// responseType: "stream"
+		}).then(function (response) {
+			setBanners(response.data.data)
+			console.log(banners, "banners")
+			setIsLoading(false)
+		})
+	}, [isLoading]);
+
+	const deleteBanner = async (bannerID) => {
+		setIsLoading(true)
+		await axios.delete(`${API_URL}/banner/${bannerID}`)
+			.then(res => alert(res.data.message))
+			.catch(err => console.log({ err }))
+			.finally(() => setIsLoading(false));
     }
   return (
     <section className='content-section'>
@@ -66,8 +67,12 @@ const HomeBanner = () => {
                                                 <Link to={`/admin/home-banner/${banner.id}/edit`} className="btn btn-primary ml-2  ">
                                                     Edit Banner
                                                 </Link>
-                                                <button className="btn btn-primary ml-2" onClick={deleteBanner(`${banner.id}`)}>
-                                                    Delet Banner
+													<button className="btn btn-primary ml-2" onClick={() => {
+														if (window.confirm("Are you sure you want to delete this banner?")) {
+															deleteBanner(`${banner.id}`);
+														}
+													}}>
+                                                    Delete Banner
                                                 </button>
                                             </div>
                                         </div>
