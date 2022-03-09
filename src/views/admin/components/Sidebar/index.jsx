@@ -68,13 +68,13 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            <li className="nav-item" onClick={()=>{changeTab('subCategories')}}>
+            {/* <li className="nav-item" onClick={()=>{changeTab('subCategories')}}>
               <Link to="/admin/sub-categories" className={`nav-link ${activeTab == 'subCategories' ? 'active' : ''}`}>
                 <p>
                   Sub Categories
                 </p>
               </Link>
-            </li>
+            </li> */}
             
             <li className="nav-item" onClick={()=>{changeTab('products')}}>
               <Link to="/admin/products" className={`nav-link ${activeTab == 'products' ? 'active' : ''}`}>

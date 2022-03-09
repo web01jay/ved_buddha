@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { API_URL } from '../../../DataHelpers/API_URL';
+import { API_URL, IMAGE_URL } from '../../../DataHelpers/API_URL';
 
 const HomePioneers = () => {
     const [pioneers, setPioneers] = useState([]);
@@ -72,25 +72,21 @@ const HomePioneers = () => {
                                 <p>Pioneer Name</p>
                             </div>
                             <div className='col-md-8'>
-                                <p>
-                                    Pioneer Name {pioneer.name}
-                                </p>
+                                <p>{pioneer.name}</p>
                             </div>
 
                             <div className="col-md-4">
                                 <p>Pioneer Description</p>
                             </div>
                             <div className='col-md-8'>
-                                <p>
-                                    Pioneer Description
-                                </p>
+                                <p>{pioneer.description}</p>
                             </div>
 
                             <div className="col-md-4">
                                 <p>Pioneer Image</p>
                             </div>
                             <div className='col-md-8'>
-                                <img src="https://dummyimage.com/500x500/000/fff&text=Image" alt="category image" height="100px" width="100px" />
+                                <img src={`${IMAGE_URL}/pioneer/${pioneer.image}`} alt="PioneerImage" height="100px" width="100px" />
                             </div>
 
                         </div>

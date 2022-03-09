@@ -61,11 +61,11 @@ const Routes = () => {
             <PrivateRoute path="/admin/home-pioneers/add" component={AddPioneers} exact />
             <PrivateRoute path="/admin/home-pioneers/edit" component={EditPioneers} exact />
             <PrivateRoute path="/admin/categories" component={Categories} exact />
-            <PrivateRoute path="/admin/categories/edit" component={EditCategories} exact />
+            <PrivateRoute path="/admin/categories/:cId/edit" component={EditCategories} exact />
             <PrivateRoute path="/admin/categories/add" component={EditCategories} exact />
-            <PrivateRoute path="/admin/sub-categories/" component={SubCategories} exact />
+            <PrivateRoute path="/admin/sub-categories/:sId" component={SubCategories} exact />
             <PrivateRoute path="/admin/sub-categories/add" component={EditSubCategory} exact />
-            <PrivateRoute path="/admin/sub-categories/edit" component={EditSubCategory} exact />
+            <PrivateRoute path="/admin/sub-categories/:sId/edit" component={EditSubCategory} exact />
 
             <PublicRoute path="/about" component={About} exact />
             <PublicRoute path="/contact" component={Contact} exact />

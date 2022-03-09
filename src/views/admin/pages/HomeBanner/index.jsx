@@ -21,6 +21,12 @@ const HomeBanner = () => {
             setIsLoading(false)
         })
     },[])
+    const deleteBanner = (bannerID) => {
+        // axios.delete(`${API_URL}/banner/${bannerID}`)
+        //     .then( res => console.log(res))
+        //     .catch( err => console.log(err))
+        console.log("delete product")
+    }
   return (
     <section className='content-section'>
         <>
@@ -60,6 +66,9 @@ const HomeBanner = () => {
                                                 <Link to={`/admin/home-banner/${banner.id}/edit`} className="btn btn-primary ml-2  ">
                                                     Edit Banner
                                                 </Link>
+                                                <button className="btn btn-primary ml-2" onClick={deleteBanner(`${banner.id}`)}>
+                                                    Delet Banner
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

@@ -1,7 +1,25 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { API_URL } from '../../../../DataHelpers/API_URL'
+import { useParams } from "react-router-dom";
 
 const SubCategories = () => {
+    const { sId } = useParams();
+    const [subCategories, setSubCategories] = useState()
+    const [isLoading, setIsLoading] = useState()
+
+    useEffect(()=>{
+        // API call using axios with get method
+        axios({method: "get", url: `${API_URL}/product-sub-category?parentId=${sId}`, responseType: "stream"}).then  (response => {
+            setIsLoading(true)
+            setSubCategories(response.data.data)
+            console.log(response.data.data, "response")
+            console.log(subCategories, "subCategories")
+            setIsLoading(false)
+        }).catch(error => {console.log(error)})
+    },[])
+
   return (
     <section className='content-section'>
         <div className="content-header">
@@ -25,7 +43,7 @@ const SubCategories = () => {
                 <div className="card">
                     <div className='card-header'>
                         <div className="row">
-                            <div className="col-md-2">
+                            <div className="col-md-4">
                                 <p className="mb-0">
                                     Sub Category Number
                                 </p>
@@ -35,12 +53,12 @@ const SubCategories = () => {
                                     Sub Category Name
                                 </p>
                             </div>
-                            <div className="col-md-4">
+                            {/* <div className="col-md-4">
                                 <p className="mb-0">
                                     Parent Category Name
                                 </p>
-                            </div>
-                            <div className="col-md-2">
+                            </div> */}
+                            <div className="col-md-4">
                                 <p className="mb-0">
                                     Actions
                                 </p>
@@ -48,29 +66,31 @@ const SubCategories = () => {
                         </div>
                     </div>
                     <div className="card-body">
-                        <div className="py-2 mb-2 border-bottom">
-                            <div className="row">
-                                <div className="col-md-2">
-                                    <p className="mb-0">
-                                        1
-                                    </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <p className="mb-0">
-                                        Sub Category Name
-                                    </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <p className="mb-0">
-                                        Parent Category Name
-                                    </p>
-                                </div>
-                                <div className="col-md-2">
-                                    <button className="btn">Edit</button>
-                                    <button className="btn ml-2">Delete</button>
+                        {subCategories && subCategories.map((subCategory, index) => {return(
+                            <div className="py-2 mb-2 border-bottom" key={index}>
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <p className="mb-0">
+                                            {index + 1}
+                                        </p>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <p className="mb-0">
+                                            {subCategory.name}
+                                        </p>
+                                    </div>
+                                    {/* <div className="col-md-4">
+                                        <p className="mb-0">
+                                            Parent Category Name
+                                        </p>
+                                    </div> */}
+                                    <div className="col-md-4">
+                                        {/* <button className="btn">Edit</button> */}
+                                        <button className="btn ml-2">Delete</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )})}
                     </div>
                 </div>
             </div>
