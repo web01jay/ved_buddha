@@ -15,7 +15,6 @@ const ProductList = () => {
   const history = useHistory();
 
   useEffect(() => {
-
     // axios api call to get all products
     axios({
       method: "get",
@@ -23,11 +22,8 @@ const ProductList = () => {
     }).then(function (response) {
       setProducts(response.data.data)
       setColumn(columns)
+      console.log(response.data.data, "productData");
     });
-
-    // set state
-    // setProducts(newProductDetails);
-    // setColumn(columns)
   }, []);
   
   return (

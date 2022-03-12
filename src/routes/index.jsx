@@ -28,18 +28,18 @@ import CategoryProducts from "../views/visitor/pages/Products/categoryProduct";
 
 const Routes = () => {
   
-  const setMinHeight = () => {
-    const main = document.getElementById("main");
-    main.style.minHeight = window.innerHeight + "px";
-  }
+  // const setMinHeight = () => {
+  //   const main = document.getElementById("main");
+  //   main.style.minHeight = window.innerHeight + "px";
+  // }
 
-    window.addEventListener("resize", function () {
-      setMinHeight();
-    });
-    useEffect(() => {
-      setMinHeight();
-      window.scroll(0,0)
-    }, []);
+  //   window.addEventListener("resize", function () {
+  //     setMinHeight();
+  //   });
+  //   useEffect(() => {
+  //     setMinHeight();
+  //     window.scroll(0,0)
+  //   }, []);
 
   return (
     <Router>

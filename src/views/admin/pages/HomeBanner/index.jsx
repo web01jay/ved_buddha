@@ -85,9 +85,7 @@ const HomeBanner = () => {
                                             <p>Banner Title</p>
                                         </div>
                                         <div className='col-md-8'>
-                                            <p>
-                                                {banner.title}
-                                            </p>
+                                            <p>{banner.title}</p>
                                         </div>
 
                                         <div className="col-md-4">
@@ -101,9 +99,7 @@ const HomeBanner = () => {
                                             <p>Banner Link</p>
                                         </div>
                                         <div className='col-md-8'>
-                                            <p>
-                                                {banner.link ?? '-'}
-                                            </p>
+                                            <p>{banner.link ?? '-'}</p>
                                         </div>
 
                                         <div className="col-md-4">

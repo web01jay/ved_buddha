@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { API_URL } from "../../DataHelpers/API_URL";
 
 import logo from "../assets/images/logo.png";
 
@@ -7,11 +9,39 @@ const Header = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [categories, setCategories] = useState()
+  const [subCategories, setSubCategories] = useState()
+
   const history = useHistory();
 
   useEffect(() => {
+      // API call using axios with get method
+      axios({
+        method: "get",
+        url: `${API_URL}/product-category`,
+        responseType: "stream"
+      }).then(function (response) {
+        console.log(response.data.data)
+        setCategories(response.data.data)
+        console.log(categories, "categories")
+      })
+  }, [])
+
+  useEffect(() => {
+    // API call using axios with get method
+    axios({
+      method: "get", 
+      url: `${API_URL}/product-sub-category`, 
+      responseType: "stream"
+    }).then(response => {
+      setSubCategories(response.data.data)
+      console.log(response.data.data, "subCategories response")
+      console.log(subCategories, "subCategories")
+    }).catch(error => {console.log(error)})
+  },[]);
+
+  useEffect(() => {
     return history.listen((location) => {
-      // console.log(`You changed the page to: ${location.pathname}`);
       setIsMenuOpen(false)
       setIsCategoryOpen(false)
       window.scroll(0,0)
@@ -80,58 +110,29 @@ const Header = () => {
                     <span className="fa-angle-down fa ms-2 text-black">{' '}</span>
                   </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                      <Link className="dropdown-item disabled" to="/products">
-                        Pharma
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/a">
-                        Tablet
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/b">
-                        Capsule
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/c">
-                        External
-                      </Link>
-                    </li>
-                    <div className="dropdown-divider"></div>
-                    <li>
-                      <Link className="dropdown-item disabled" to="/products">
-                        Cosmetic
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/d">
-                        Soap
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/e">
-                        Lotion
-                      </Link>
-                    </li>
-                    <div className="dropdown-divider"></div>
-                    <li>
-                      <Link className="dropdown-item disabled" to="/products">
-                        Nutra
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/f">
-                        Energy Drink
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/products/category/g">
-                        Protein Powder
-                      </Link>
-                    </li>
+                    {categories && categories.map((category, index) => {
+                      return (
+                        <>
+                          <li key={index}>
+                            <Link to={`/products/${category.id}`} className="dropdown-item disabled">
+                              {category.name}
+                            </Link>
+                          </li>
+                          {subCategories && subCategories.map((subCategory, index) => { return (
+                            <>
+                              {subCategory.parent_id === category.id && (
+                                <li key={index}>
+                                  <Link to={`/products/category/${subCategory.id}`} className="dropdown-item">
+                                    {subCategory.name}
+                                  </Link>
+                                </li>
+                              )}
+                            </>
+                          )})}
+                          <div className="dropdown-divider"></div>
+                        </>
+                      )
+                    })}
                   </ul>
                 </li>
                 <li className="nav-item float-right mx-xl-2 mx-xxl-3 my-2 my-lg-0">

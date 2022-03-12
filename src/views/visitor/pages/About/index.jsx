@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-
-import Slide01 from "../../assets/images/slide01.jpg";
-import Slide02 from "../../assets/images/slide02.jpg";
-import Slide03 from "../../assets/images/slide03.jpg";
+import ExploreProducts from '../../components/exploreProducts';
 
 const About = () => {
   return (
@@ -59,41 +56,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div class="explore-section section-spacer">
-                        <p class="display-6 text-center mb-4">Explore Our Products</p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <Link to="/products/category/a" class="category-section d-block">
-                                    <div class="image-container">
-                                        <img src={Slide02} alt="category" class="mw-100" />
-                                    </div>
-                                    <p class="category-title">
-                                        Tablet
-                                    </p>
-                                </Link>
-                            </div>
-                            <div class="col-md-4">
-                                <Link to="/productscategory/b" class="category-section d-block">
-                                    <div class="image-container">
-                                        <img src={Slide01} alt="category" class="mw-100" />
-                                    </div>
-                                    <p class="category-title">
-                                        Capsule
-                                    </p>
-                                </Link>
-                            </div>
-                            <div class="col-md-4">
-                                <Link to="/products/category/d" class="category-section d-block">
-                                    <div class="image-container">
-                                        <img src={Slide03} alt="category" class="mw-100" />
-                                    </div>
-                                    <p class="category-title">
-                                        Soap
-                                    </p>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    <ExploreProducts />
                     
                 </div>
             </div>

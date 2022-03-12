@@ -15,13 +15,13 @@ export const columns = [
   },
   {
     name: "Category",
-    selector: (row) => row.category_id,
+    selector: (row) => row.category.name,
     sortable: true,
   },
   {
     name: "Actions",
     center: true,
-    cell: (row) => {
+    cell: (row, index) => {
       return (
         <>
           <Link to={`/admin/products/${row.id}`} className="mr-2"> View </Link>

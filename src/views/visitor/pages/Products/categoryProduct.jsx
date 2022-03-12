@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import { pDataArray } from "./productData";
 import Slide01 from "../../assets/images/slide01.jpg";
 import { Link, useHistory, useParams } from "react-router-dom";
+import axios from "axios";
+import { API_URL, IMAGE_URL } from "../../../DataHelpers/API_URL";
 
 const CategoryProducts = () => {
   const { catId } = useParams();
   const history = useHistory();
 
   const [pData, setPData] = useState([]);
+  const [isLoading, setIsLoading] = useState()
 
   useEffect(() => {
-    setPData(pDataArray);
+    setIsLoading(true)
+    axios({
+      method: "get",
+      url: `${API_URL}/product`,
+    }).then(function (response) {
+      setPData(response.data.data)
+      console.log(response.data.data, "productData");
+    });
+    setIsLoading(false)
   }, []);
 
   console.log(pData, "productData");
@@ -34,20 +45,23 @@ const CategoryProducts = () => {
       </section>
       <section className="page-section section-spacer">
         <div className="container">
+          {isLoading ? (
+            <p className="py-5 text-center">Loading ...</p>
+          ) : (
           <div className="row">
-            {pData.map((product, pId) => (
+            {pData.map((product, index) => (
               <>
-                {product.subCId == catId ? (
+                {product.sub_category_id == catId ? (
                   <>
-                    <div key={pId} className="col-12 col-sm-6 col-lg-4">
+                    <div key={index} className="col-12 col-sm-6 col-lg-4">
                       <Link
-                        to={`/products/details/${product.pId}`}
+                        to={`/products/details/${product.id}`}
                         className="product-card"
                       >
                         <div className="image-container">
-                          <img src={Slide01} alt="product image" />
+                          <img src={`${IMAGE_URL}/products/${product.image}`} alt="product image" />
                         </div>
-                        <p className="image-title">{product.pName} </p>
+                        <p className="image-title">{product.name} </p>
                       </Link>
                     </div>
                   </>
@@ -57,6 +71,7 @@ const CategoryProducts = () => {
               </>
             ))}
           </div>
+          )}
         </div>
       </section>
     </>
