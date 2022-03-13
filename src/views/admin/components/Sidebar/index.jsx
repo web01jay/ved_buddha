@@ -87,7 +87,7 @@ const Sidebar = () => {
             
 
             <li className="nav-item" onClick={()=>{changeTab('conatact')}}>
-              <Link to="/admin/dashboard" className={`nav-link ${activeTab == 'conatact' ? 'active' : ''}`}>
+              <Link to="/admin/messages" className={`nav-link ${activeTab == 'conatact' ? 'active' : ''}`}>
                 <p>
                   Conatact Messages
                 </p>

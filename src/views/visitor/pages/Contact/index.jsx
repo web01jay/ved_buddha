@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from "yup";
+import axios from 'axios';
+import { API_URL } from '../../../DataHelpers/API_URL';
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState();
+  const contactScheme = Yup.object().shape({
+    name: Yup.string().required("Please enter your name"),
+    email: Yup.string()
+      .email("Please enter a valid email")
+      .required("Please enter your email"),
+    subject: Yup.string().required("Please enter subject"),
+    message: Yup.string().required("Please enter your message"),
+  })
   return (
     <>
       <section className="breadcumbs-section position-relative">
@@ -58,56 +71,102 @@ const Contact = () => {
             </div>
             <div className="col-md-7">
               <div className="d-block mt-5 mt-md-0">
-                <form action="">
-                  <div className="row">
-                    <div className="col-lg-12 col-xl-8 offset-xl-2">
-                      <p className="mb-3">
-                        If you have any query in mind please free to contact us.
-                      </p>
-                    </div>
-                    <div className="col-lg-6 col-xl-4 offset-xl-2">
-                      <div className="form-group mb-3">
-                        <label for="" className="form-control-label">
-                          Name
-                        </label>
-                        <input type="text" name="" id="" className="form-control" />
+                {isSubmitting === true ? (
+                  <div className="py-5 text-center">
+                    Sending ... </div>
+                    ) : (
+                  <Formik
+                    initialValues={{
+                      name: "",
+                      email: "",
+                      subject: "",
+                      message: "",
+                    }}
+                    validationSchema={contactScheme}
+                    onSubmit={ async (values, { setSubmitting }) => {
+                      setIsSubmitting(true);
+                      try {
+                        console.log(values)
+                        let formData = FormData()
+
+                        formData.append('name', values.name)
+                        formData.append('email', values.email)
+                        formData.append('subject', values.subject)
+                        formData.append('message', values.message)
+
+                        await axios.post(`${API_URL}/contact/create`, formData)
+                          .then(res => {
+                            console.log(res, 'res')
+                          }).catch(err => {
+                            console.log(err, 'err')
+                          });
+                      } catch (err) {
+                        console.log(err);
+                      }
+                      setIsSubmitting(false);
+                    }}
+                  >
+                    <Form>
+
+                      <div className="row">
+                        <div className="col-lg-12 col-xl-8 offset-xl-2">
+                          <p className="mb-3">
+                            If you have any query in mind please free to contact us.
+                          </p>
+                        </div>
+                        <div className="col-lg-6 col-xl-4 offset-xl-2">
+                          <div className="form-group mb-3">
+                            <label for="" className="form-control-label">
+                              Name
+                            </label>
+                            {/* <input type="text" name="" id="" className="form-control" /> */}
+                            <Field name="name" id="name" type="text" className="form-control" />
+                            <ErrorMessage name="name" component="div" className="invalid-feedback" />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-xl-4">
+                          <div className="form-group mb-3">
+                            <label for="" className="form-control-label">
+                              Email{" "}
+                            </label>
+                            {/* <input type="text" name="" id="" className="form-control" /> */}
+                            <Field name="email" id="email" type="text" className="form-control" />
+                            <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                          </div>
+                        </div>
+                        <div className="col-lg-12 col-xl-8 offset-xl-2">
+                          <div className="form-group mb-3">
+                            <label for="" className="form-control-label">
+                              Subject
+                            </label>
+                            {/* <input type="text" name="" id="" className="form-control" /> */}
+                            <Field name="subject" id="subject" type="text" className="form-control" />
+                            <ErrorMessage name="subject" component="div" className="invalid-feedback" />
+                          </div>
+                        </div>
+                        <div className="col-lg-12 col-xl-8 offset-xl-2">
+                          <div className="form-group mb-3">
+                            <label for="" className="form-control-label">
+                              Message
+                            </label>
+                            {/* <textarea
+                              name=""
+                              id=""
+                              cols="30"
+                              rows="5"
+                              className="form-control"
+                            ></textarea> */}
+                            <Field as="textarea" name="message" id="message" type="text" className="form-control" />
+                            <ErrorMessage name="message" component="div" className="invalid-feedback" />
+                          </div>
+                        </div>
+                        <div className="col-lg-12 col-xl-8 offset-xl-2">
+                          <button type="submit" className="btn btn-outline">Submit</button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="col-lg-6 col-xl-4">
-                      <div className="form-group mb-3">
-                        <label for="" className="form-control-label">
-                          Email{" "}
-                        </label>
-                        <input type="text" name="" id="" className="form-control" />
-                      </div>
-                    </div>
-                    <div className="col-lg-12 col-xl-8 offset-xl-2">
-                      <div className="form-group mb-3">
-                        <label for="" className="form-control-label">
-                          Subject
-                        </label>
-                        <input type="text" name="" id="" className="form-control" />
-                      </div>
-                    </div>
-                    <div className="col-lg-12 col-xl-8 offset-xl-2">
-                      <div className="form-group mb-3">
-                        <label for="" className="form-control-label">
-                          Message
-                        </label>
-                        <textarea
-                          name=""
-                          id=""
-                          cols="30"
-                          rows="5"
-                          className="form-control"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div className="col-lg-12 col-xl-8 offset-xl-2">
-                      <button className="btn btn-outline">Submit</button>
-                    </div>
-                  </div>
-                </form>
+                    </Form>
+                  </Formik>
+                )}
               </div>
             </div>
           </div>

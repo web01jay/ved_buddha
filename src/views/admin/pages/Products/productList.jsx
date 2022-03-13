@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import { columns, listData, newProductDetails } from './productData';
 import axios from 'axios';
 import { API_URL } from '../../../DataHelpers/API_URL';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
 
@@ -31,9 +32,18 @@ const ProductList = () => {
       {/* content title */}
       <div className="content-header">
         <div className="container-fluid">
-          <h1 className="mb-2">
-            Products
-          </h1>
+          <div className="row">
+            <div className="col-md-6">
+              <h1 className="mb-2">
+                Products
+              </h1>
+            </div>
+            <div className="col-md-6">
+              <div className="text-right">
+                <Link to="/admin/products/product/add" className="btn btn-primary">Add Product</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="content-body">

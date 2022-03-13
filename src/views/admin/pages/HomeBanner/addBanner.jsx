@@ -39,7 +39,7 @@ const AddBanner = () => {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-md-12">
-                                <p className='card-title mb-0'>Banner Number: </p>
+                                <p className='card-title mb-0'>Add Banner</p>
                             </div>
                         </div>
                     </div>

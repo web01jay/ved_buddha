@@ -22,7 +22,8 @@ const EditProducts = () => {
     const productSchema = Yup.object().shape({
         productTitle: Yup.string().required("Please enter product Title"),
         productDescription: Yup.string().required("Please enter product Description"),
-        productLink: Yup.string().required("Please enter Link").nullable(),
+        productCategory: Yup.string().required("Please enter product Category"),
+        productSubCategory: Yup.string().required("Please enter product SubCategory"),
         // productImage: Yup.mixed().test('fileType', "Unsupported File Format", value => {SUPPORTED_FORMATS.includes(value.type)})
     });
 
@@ -70,9 +71,6 @@ const EditProducts = () => {
                             currentProduct?.sub_category &&
 
                             <Formik
-                                onLoad={()=>{
-                                    console.log(currentProduct, "currentProduct")
-                                }}
                                 initialValues={{
                                     productName: currentProduct.name,
                                     productDescription: currentProduct.description,
@@ -81,30 +79,56 @@ const EditProducts = () => {
                                     productImage: null,
                                 }}
                                 validationSchema={productSchema}
-                                onSubmit = { async (values) => {
-                                    setIsSubmitting(true)
-                                    let formData = new FormData();
 
+                                onSubmit={ async (values) => {
+                                    console.log(values, "values submit called")
+                                    setIsSubmitting(true);
+                                    let formData = new FormData();
+        
                                     formData.append('_method', "put");
                                     formData.append('name', values.productName);
                                     formData.append('description', values.productDescription);
                                     formData.append('category_id', currentProduct.category_id);
-                                    formData.append('sub_category_id', currentProduct.sub_Category_id);
+                                    formData.append('sub_category_id', currentProduct.sub_category_id);
                                     formData.append('image', imageFile);
-
-                                    await axios.post(`${API_URL}/product/${pId}`, formData).then(res => {
+                                    
+                                    await axios.post(`${API_URL}/pioneer/${pId}`, formData).then(res => {
                                         // check if the request is successful
-                                        // console.log('res', res);
-                                        history.push(`/admin/products/${pId}`);
-                                        alert("Product Updated Successfully")
-                                        console.log(res, "res")
+                                        console.log('res', res);
+                                        history.push(`/admin/home-pioneer/${pId}`);
                                         })
                                         .catch(function (error){
-                                        console.log('error', error);
+                                            console.log('error', error);
                                         });
                                        
                                     setIsSubmitting(false)
-                                } }
+                                }}
+
+                                // onSubmit = { async (values) => {
+                                //     setIsSubmitting(true)
+                                //     let formData = new FormData();
+
+                                //     formData.append('_method', "put");
+                                //     formData.append('name', values.productName);
+                                //     formData.append('description', values.productDescription);
+                                //     formData.append('category_id', currentProduct.category_id);
+                                //     formData.append('sub_category_id', currentProduct.sub_Category_id);
+                                //     formData.append('image', imageFile);
+
+                                //     await axios.post(`${API_URL}/product/${pId}`, formData).then(res => {
+                                //         // check if the request is successful
+                                //         // console.log('res', res);
+                                //         history.push(`/admin/products/${pId}`);
+                                //         alert("Product Updated Successfully")
+                                //         console.log(res, "res")
+                                //         })
+                                //         .catch(function (error){
+                                //             console.log('error', error);
+                                //         });
+                                       
+                                //     setIsSubmitting(false)
+                                // } }
+                                
                             >
                                 <Form encType='multipart/form-data'>
                                     <div className="card">
@@ -166,7 +190,7 @@ const EditProducts = () => {
                                                             type="text"
                                                             className="form-control"
                                                             placeholder="Product Category"
-                                                            disabled
+                                                            
                                                         />
                                                         <ErrorMessage name="productCategory" component="div" className="invalid-feedback" />
                                                     </div>
@@ -185,7 +209,7 @@ const EditProducts = () => {
                                                             type="text"
                                                             className="form-control"
                                                             placeholder="Product Sub Category"
-                                                            disabled
+                                                            
                                                         />
                                                         <ErrorMessage name="productSubCategory" component="div" className="invalid-feedback" />
                                                     </div>
@@ -212,9 +236,7 @@ const EditProducts = () => {
 
                                             <div className="row">
                                                 <div className="col-md-12">
-                                                    <button className='btn btn-primary' type='submit'>
-                                                        Submit
-                                                    </button>
+                                                    <button className="btn btn-primary" type='submit' >Submit</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
 import { API_URL } from '../../../DataHelpers/API_URL';
+import { useHistory } from 'react-router-dom';
 
 const AddPioneers = () => {
 
@@ -16,6 +17,7 @@ const AddPioneers = () => {
     });
 
     const fileSelected = (event)=> {setImageFile(event.target.files[0])}
+    const history = useHistory();
 
   return (
     <>
@@ -38,7 +40,7 @@ const AddPioneers = () => {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-md-12">
-                                <p className='card-title mb-0'>Pioneer Number: </p>
+                                <p className='card-title mb-0'>Add Pioneer</p>
                             </div>
                         </div>
                     </div>
@@ -49,13 +51,27 @@ const AddPioneers = () => {
                             setIsSubmitting(true)
                             try {
                                 console.log(values)
-                                const pioneer = await axios.post(`${API_URL}/banner`, {
-                                    name: values.pioneerName,
-                                    description: values.pioneerDescription,
-                                    bannerImage: imageFile,
-                                })
-                                console.log(pioneer)
-                                alert("data added")
+                                
+                                let formData = new FormData();
+
+                                // formData.append('_method', "put");
+                                formData.append('name', values.pioneerName);
+                                formData.append('description', values.pioneerDescription);
+                                formData.append('image', imageFile);
+                                
+                                const postPioneer = await axios.post(`${API_URL}/pioneer`, formData).then(res => {
+								    // check if the request is successful
+									console.log('res', res);
+									history.push('/admin/home-pioneers');
+								})
+								.catch(function (error){
+								console.log('error', error);
+								});
+                                
+								console.log(postPioneer)
+								
+                                // console.log(postPioneer)
+                                // alert("data added")
                             } catch (err) {
                                 console.log(err)
                             }

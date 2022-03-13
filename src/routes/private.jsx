@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import "../assets/css/admin.css";
 
 import Sidebar from "../views/admin/components/Sidebar";
-import Navbar from "../views/admin/components/navbar";
 
 export const Private = ({ component: Component, path, exact, ...rest }) => {
   return (
@@ -16,7 +15,7 @@ export const Private = ({ component: Component, path, exact, ...rest }) => {
             <>
               <Sidebar />
               <div className="page-section">
-                <Navbar />
+                {/* <Navbar /> */}
                 <Component {...props} />
               </div>
               <script

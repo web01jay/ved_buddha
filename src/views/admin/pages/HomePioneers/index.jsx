@@ -12,7 +12,7 @@ const HomePioneers = () => {
         // axios call
         axios({
             method: "get",
-            url: `${API_URL}/banner`,
+            url: `${API_URL}/pioneer`,
             responseType: "stream"
         }).then(function (response) {
             setIsLoading(true)
@@ -22,6 +22,15 @@ const HomePioneers = () => {
             setIsLoading(false)
         })
     },[])
+
+    const deletePioneer = async (pioneerID) => {
+        setIsLoading(true)
+        await axios.delete(`${API_URL}/pioneer/${pioneerID}`)
+            .then(res => alert(res.data.message))
+            .catch(err => console.log({ err }))
+            .finally(() => setIsLoading(false));
+    }
+
   return (
       <>
       {isLoading === true ? (
@@ -55,12 +64,16 @@ const HomePioneers = () => {
                             </div>
                             <div className="col-md-6">
                                 <div className='text-right'>
-                                    <Link to="/admin/home-pioneers/edit" className="btn btn-primary ml-2  ">
+                                    <Link to={`/admin/home-pioneers/${pioneer.id}/edit`} className="btn btn-primary ml-2  ">
                                         Edit Pioneer
                                     </Link>        
-                                    <button className="btn btn-primary ml-2">
-                                        Delete Pioneer
-                                    </button>        
+                                    <button className="btn btn-primary ml-2" onClick={() => {
+                                        if (window.confirm("Are you sure you want to delete this Pioneer?")) {
+                                            deletePioneer(`${pioneer.id}`);
+                                        }
+                                    }}>
+                                    Delete Banner
+                                </button>
                                 </div>
                             </div>
                         </div>
