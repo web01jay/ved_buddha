@@ -13,30 +13,16 @@ const ProductDetail = () => {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  const getData = async axios => {
-    setIsLoading(true);
-    await axios({
+  useEffect(()=> {
+    setIsLoading(true)
+    axios({
       method: "get",
       url: `${API_URL}/product/${pId}`,
       // responseType: "stream"
     }).then(function (response) {
-      setProducts(response.data.data);
-      setIsLoading(false);
+      setProducts(response.data.data[0]);
+      console.log(response.data.data, "productData");
     });
-  }
-
-  useEffect(()=> {
-    setIsLoading(true)
-    // axios api call to get all products
-    // axios({
-    //   method: "get",
-    //   url: `${API_URL}/product`,
-    // }).then(function (response) {
-    //   await setProducts(response.data.data)
-    //   console.log(response.data.data, "productData");
-    // });
-    // console.log(pId)
-    getData(axios);
     setIsLoading(false)
   },[isLoading])
 
@@ -80,7 +66,9 @@ const ProductDetail = () => {
                           <p>Product Description</p>
                         </div>
                         <div className="col-md-8">
-                          {products && products.description.split("\n").map((item, index) => { return( <p key={index}>{item}</p> )})}
+                          {/* {products && products.description} */}
+                          {products && products.description && products.description.length < 10 && products.description}
+                          {products && products.description && products.description.length > 10 && products.description.split("\n").map((item, index) => { return( <p key={index}>{item}</p> )})}
                         </div>
                       </div>
 
@@ -90,8 +78,7 @@ const ProductDetail = () => {
                         </div>
                         <div className="col-md-8">
                           {products &&
-                            <img src={`
-                            ${IMAGE_URL}/products/${products.image}`} alt="product image" height="100px" width="100px" />
+                            <img src={`${IMAGE_URL}/products/${products.image}`} alt="productImage" height="100px" width="100px" />
                           }
                         </div>
                       </div>

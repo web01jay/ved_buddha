@@ -16,9 +16,8 @@ const EditProducts = () => {
     const history = useHistory();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState();
+    const [currentProduct, setCurrentProduct] = useState([]);
     const [imageFile, setImageFile] = useState();
-    const [editorState, setEditorState] = useState();
 
     const productSchema = Yup.object().shape({
         productTitle: Yup.string().required("Please enter product Title"),
@@ -39,22 +38,16 @@ const EditProducts = () => {
             // responseType: "stream"
         }).then(function (response) {
             setIsSubmitting(true)
-            setCurrentProduct(response.data.data)
-            console.log(currentProduct, "products")
-            // console.log(response.data.data)
-            // console.log(currentBanner)
+            setCurrentProduct(response.data.data[0])
+            console.log(response.data.data[0], "products")
             setIsSubmitting(false)
         })
     },[])
 
-    useEffect(()=>{
-        console.log(editorState, "editorState")
-    },[editorState])
-
   return (
     <section className='content-section'>
         {isSubmitting === true ? (
-            <div className="my-5">Submiting</div>
+            <div className="py-5 text-center">Loading ...</div>
           ) : (
             <>
                 <div className="content-header">
@@ -68,11 +61,23 @@ const EditProducts = () => {
                 </div>
                 <div className="content-body">
                     <div className="container-fluid">
-                        {currentProduct && 
+                        {console.log(currentProduct, "currentProduct")}
+                        {
+                            currentProduct && 
+                            currentProduct?.name && 
+                            currentProduct?.description && 
+                            currentProduct?.category && 
+                            currentProduct?.sub_category &&
+
                             <Formik
+                                onLoad={()=>{
+                                    console.log(currentProduct, "currentProduct")
+                                }}
                                 initialValues={{
                                     productName: currentProduct.name,
                                     productDescription: currentProduct.description,
+                                    productCategory: currentProduct.category.name,
+                                    productSubCategory: currentProduct.sub_category.name,
                                     productImage: null,
                                 }}
                                 validationSchema={productSchema}
@@ -80,15 +85,19 @@ const EditProducts = () => {
                                     setIsSubmitting(true)
                                     let formData = new FormData();
 
-                                    formData.append('_method', 'PUT');
+                                    formData.append('_method', "put");
                                     formData.append('name', values.productName);
                                     formData.append('description', values.productDescription);
+                                    formData.append('category_id', currentProduct.category_id);
+                                    formData.append('sub_category_id', currentProduct.sub_Category_id);
                                     formData.append('image', imageFile);
 
                                     await axios.post(`${API_URL}/product/${pId}`, formData).then(res => {
                                         // check if the request is successful
                                         // console.log('res', res);
-                                        history.push('/admin/home-banner');
+                                        history.push(`/admin/products/${pId}`);
+                                        alert("Product Updated Successfully")
+                                        console.log(res, "res")
                                         })
                                         .catch(function (error){
                                         console.log('error', error);
@@ -136,11 +145,49 @@ const EditProducts = () => {
                                                         <Field 
                                                             name="productDescription"
                                                             id="productDescription"
-                                                            type="textarea"
+                                                            as="textarea"
                                                             className="form-control editor"
                                                             placeholder="Product Description"
                                                         />
                                                         <ErrorMessage name="productDescription" component="div" className="invalid-feedback" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <p>Product Category</p>
+                                                </div>
+                                                <div className="col-md-8">
+                                                    <div className="form-group mb-3">
+                                                        <Field 
+                                                            name="productCategory"
+                                                            id="productCategory"
+                                                            type="text"
+                                                            className="form-control"
+                                                            placeholder="Product Category"
+                                                            disabled
+                                                        />
+                                                        <ErrorMessage name="productCategory" component="div" className="invalid-feedback" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <p>Product Sub Category</p>
+                                                </div>
+                                                <div className="col-md-8">
+                                                    <div className="form-group mb-3">
+                                                        <Field 
+                                                            name="productSubCategory"
+                                                            id="productSubCategory"
+                                                            type="text"
+                                                            className="form-control"
+                                                            placeholder="Product Sub Category"
+                                                            disabled
+                                                        />
+                                                        <ErrorMessage name="productSubCategory" component="div" className="invalid-feedback" />
                                                     </div>
                                                 </div>
                                             </div>

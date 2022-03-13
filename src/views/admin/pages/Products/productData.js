@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import { API_URL } from '../../../DataHelpers/API_URL';
 import { pDataArray } from "../../../visitor/pages/Products/productData";
+
+const deleteProducts = async (productID) => {
+  await axios.delete(`${API_URL}/product/${productID}`)
+    .then(res => {console.log(res)})
+    .catch(err => {console.log(err)})
+}
 
 export const columns = [
   {
@@ -26,14 +34,13 @@ export const columns = [
         <>
           <Link to={`/admin/products/${row.id}`} className="mr-2"> View </Link>
           <Link to={`/admin/products/${row.id}/edit`} className="mr-2"> Edit </Link>
-          <a
-            href={(e) => {
-              e.preventDefault();
-            }}
-            className="delete"
-          >
+          <button className="btn delete" onClick={()=>{
+            if (window.confirm(`Are you sure you want to delete Product ${row.id} ?`)) {
+              deleteProducts(row.id)
+            }
+          }}>
             Delete
-          </a>
+          </button>
         </>
       );
     },
