@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from "yup";
+import axios from 'axios';
+import { API_URL } from '../../../DataHelpers/API_URL';
+import { useHistory } from 'react-router-dom';
+
 
 const AddCategories = () => {
+
+    const history = useHistory();
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [imageFile, setImageFile] = useState();
+
+    const categorySchema = Yup.object().shape({
+        
+    })
   return (
     <section className='content-section'>
         <div className="content-header">
@@ -12,6 +27,9 @@ const AddCategories = () => {
                 </div>
             </div>
         </div>
+        {isSubmitting === true ? (
+            <div className="py-5 text-center">Loading ...</div>
+        ) : (
         <div className="content-body">
             <div className="container-fluid">
                 <div className="card">
@@ -55,6 +73,7 @@ const AddCategories = () => {
                 </div>
             </div>
         </div>
+        )}
     </section>
   )
 }

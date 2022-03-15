@@ -87,14 +87,13 @@ const Contact = () => {
                       setIsSubmitting(true);
                       try {
                         console.log(values)
-                        let formData = FormData()
 
-                        formData.append('name', values.name)
-                        formData.append('email', values.email)
-                        formData.append('subject', values.subject)
-                        formData.append('message', values.message)
-
-                        await axios.post(`${API_URL}/contact/create`, formData)
+                        await axios.post(`${API_URL}/contact`, {
+                          'name': values.name,
+                          'email': values.email,
+                          'subject': values.subject,
+                          'message': values.message,
+                        })
                           .then(res => {
                             console.log(res, 'res')
                           }).catch(err => {
@@ -149,19 +148,12 @@ const Contact = () => {
                             <label for="" className="form-control-label">
                               Message
                             </label>
-                            {/* <textarea
-                              name=""
-                              id=""
-                              cols="30"
-                              rows="5"
-                              className="form-control"
-                            ></textarea> */}
                             <Field as="textarea" name="message" id="message" type="text" className="form-control" />
                             <ErrorMessage name="message" component="div" className="invalid-feedback" />
                           </div>
                         </div>
                         <div className="col-lg-12 col-xl-8 offset-xl-2">
-                          <button type="submit" className="btn btn-outline">Submit</button>
+                          <button type="submit" className="submit-btn">Submit</button>
                         </div>
                       </div>
                     </Form>

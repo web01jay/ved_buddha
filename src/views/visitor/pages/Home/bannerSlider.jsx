@@ -45,6 +45,7 @@ const BannerSlider = () => {
                                         ) : (
                                             <img src={`${IMAGE_URL}/banner/${banner.image}`} alt={banner.title} />
                                         )}
+                                        {banner.title.length > 5 ? (
                                         <div className="item-description ps-3 pe-5 py-5">
                                             <h1 className="fs-22">{banner.title}</h1>
                                             <h6 className="py-4 fs-18">
@@ -54,6 +55,7 @@ const BannerSlider = () => {
                                                 View More
                                             </a>
                                         </div>
+                                        ) : (null)}
                                 </SwiperSlide>
                                 )
                             } )}

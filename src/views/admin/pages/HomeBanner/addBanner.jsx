@@ -11,9 +11,9 @@ const AddBanner = () => {
     const [imageFile, setImageFile] = useState();
     const SUPPORTED_FORMATS  = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
     const bannerSchema = Yup.object().shape({
-        bannerTitle: Yup.string().required("Please enter Banner Title"),
-        bannerDescription: Yup.string().required("Please enter Banner Description"),
-        bannerLink: Yup.string().required("Please enter Link"),
+        bannerTitle: Yup.string().nullable(),
+        bannerDescription: Yup.string().nullable(),
+        bannerLink: Yup.string().nullable(),
         // bannerImage: Yup.mixed().test('fileType', "Unsupported File Format", value => {SUPPORTED_FORMATS.includes(value.type)})
     });
     

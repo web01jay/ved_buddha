@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prod": "react-scripts build && scp -r ./build/* root@143.110.177.70:/var/www/vedbuddha.com/html",
-    "scss": "sass src/views/visitor/assets/scss/index.scss:src/views/visitor/assets/css/style.css --watch --no-source-map"
+    "scss": "sass src/views/visitor/assets/scss/index.scss:src/views/visitor/assets/css/style.css --watch --no-source-map --style compressed"
   },
   "eslintConfig": {
     "extends": [

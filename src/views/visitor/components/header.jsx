@@ -89,6 +89,14 @@ const Header = () => {
               id="navbar-navigation"
             >
               <ul className="p-0 nav navbar-nav align-items-baseline ms-auto mt-2 mt-lg-0 align-items-md-baseline align-items-lg-center">
+              <li className="nav-item float-right mx-xl-2 mx-xxl-3 my-2 my-lg-0">
+                  <Link
+                    className="navbar-nav-link font-medium"
+                    to="/"
+                  >
+                    Home
+                  </Link>
+                </li>
                 <li className="nav-item float-right mx-xl-2 mx-xxl-3 my-2 my-lg-0">
                   <Link
                     className="navbar-nav-link font-medium"
@@ -110,7 +118,7 @@ const Header = () => {
                     <span className="fa-angle-down fa ms-2 text-black">{' '}</span>
                   </a>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {categories && categories.map((category, index) => {
+                    {categories && categories.slice(0).reverse().map((category, index) => {
                       return (
                         <>
                           <li key={index}>
@@ -118,7 +126,7 @@ const Header = () => {
                               {category.name}
                             </Link>
                           </li>
-                          {subCategories && subCategories.map((subCategory, index) => { return (
+                          {subCategories && subCategories.slice(0).reverse().map((subCategory, index) => { return (
                             <>
                               {subCategory.parent_id === category.id && (
                                 <li key={index}>
