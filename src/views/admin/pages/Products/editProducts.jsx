@@ -20,7 +20,7 @@ const EditProducts = () => {
     const [imageFile, setImageFile] = useState();
 
     const productSchema = Yup.object().shape({
-        productTitle: Yup.string().required("Please enter product Title"),
+        productName: Yup.string().required("Please enter product Title"),
         productDescription: Yup.string().required("Please enter product Description"),
         productCategory: Yup.string().required("Please enter product Category"),
         productSubCategory: Yup.string().required("Please enter product SubCategory"),
@@ -40,7 +40,7 @@ const EditProducts = () => {
         }).then(function (response) {
             setIsSubmitting(true)
             setCurrentProduct(response.data.data[0])
-            console.log(response.data.data[0], "products")
+            // console.log(response.data.data[0], "products")
             setIsSubmitting(false)
         })
     },[])
@@ -62,7 +62,7 @@ const EditProducts = () => {
                 </div>
                 <div className="content-body">
                     <div className="container-fluid">
-                        {console.log(currentProduct, "currentProduct")}
+                        {/* {console.log(currentProduct, "currentProduct")} */}
                         {
                             currentProduct && 
                             currentProduct?.name && 
@@ -81,7 +81,7 @@ const EditProducts = () => {
                                 validationSchema={productSchema}
 
                                 onSubmit={ async (values) => {
-                                    console.log(values, "values submit called")
+                                    // console.log(values, "values submit called")
                                     setIsSubmitting(true);
                                     let formData = new FormData();
         
@@ -89,13 +89,15 @@ const EditProducts = () => {
                                     formData.append('name', values.productName);
                                     formData.append('description', values.productDescription);
                                     formData.append('category_id', currentProduct.category_id);
-                                    formData.append('sub_category_id', currentProduct.sub_category_id);
-                                    formData.append('image', imageFile);
+									formData.append('sub_category_id', currentProduct.sub_category_id);
+									if (imageFile) {
+										formData.append('image', imageFile);
+									}
                                     
-                                    await axios.post(`${API_URL}/pioneer/${pId}`, formData).then(res => {
+                                    await axios.post(`${API_URL}/product/${pId}`, formData).then(res => {
                                         // check if the request is successful
-                                        console.log('res', res);
-                                        history.push(`/admin/home-pioneer/${pId}`);
+                                        // console.log('res', res);
+                                        history.push(`/admin/products/${pId}`);
                                         })
                                         .catch(function (error){
                                             console.log('error', error);

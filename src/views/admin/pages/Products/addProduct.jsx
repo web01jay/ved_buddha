@@ -15,7 +15,7 @@ const AddProduct = () => {
     const [subCategory, setSubCategory] = useState(null);
 
     const productSchema = Yup.object().shape({
-        productTitle: Yup.string().required("Please enter product Title"),
+        productName: Yup.string().required("Please enter Product Name"),
         productDescription: Yup.string().required("Please enter product Description"),
         productCategory: Yup.string().required("Please enter product Category"),
         productSubCategory: Yup.string().required("Please enter product SubCategory"),
@@ -79,7 +79,10 @@ const AddProduct = () => {
                                 formData.append('description', values.productDescription);
                                 formData.append('category', values.productCategory);
                                 formData.append('subCategory', values.productSubCategory);
-                                formData.append('image', imageFile);
+                                
+								if (imageFile) {
+									formData.append('image', imageFile);
+								}
 
                                 await axios.post(`${API_URL}/product`, formData)
                                     .then((res)=>{
