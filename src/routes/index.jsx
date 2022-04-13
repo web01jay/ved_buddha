@@ -5,20 +5,28 @@ import { Public as PublicRoute } from "./public";
 
 import Login from "../views/admin/pages/Login";
 import Dashboard from "../views/admin/pages/Dashboard";
+
 import ProductList from "../views/admin/pages/Products/productList";
+import AddProduct from "../views/admin/pages/Products/addProduct";
+import EditProducts from "../views/admin/pages/Products/editProducts";
 import ProductDetail from "../views/admin/pages/Products/productDetail";
+
 import HomeBanner from "../views/admin/pages/HomeBanner";
 import AddBanner from "../views/admin/pages/HomeBanner/addBanner";
 import EditBanner from "../views/admin/pages/HomeBanner/editBanner";
+
 import HomePioneers from "../views/admin/pages/HomePioneers";
 import AddPioneers from "../views/admin/pages/HomePioneers/addPioneer";
 import EditPioneers from "../views/admin/pages/HomePioneers/editPioneers";
+
 import Categories from "../views/admin/pages/Categories";
+import AddCategories from "../views/admin/pages/Categories/addCategories";
 import EditCategories from "../views/admin/pages/Categories/editCategories";
+
 import SubCategories from "../views/admin/pages/Categories/SubCategories";
-import AddProduct from "../views/admin/pages/Products/addProduct";
-import EditProducts from "../views/admin/pages/Products/editProducts";
+import AddSubCategory from "../views/admin/pages/Categories/SubCategories/addSubCategory";
 import EditSubCategory from "../views/admin/pages/Categories/SubCategories/editSubCategory";
+
 import ContactList from "../views/admin/pages/Contact";
 
 import Home from "../views/visitor/pages/Home";
@@ -52,22 +60,28 @@ const Routes = () => {
           <Switch>
             <PrivateRoute path="/admin/login" component={Login} exact />
             <PrivateRoute path="/admin/dashboard" component={Dashboard} exact />
+            
             <PrivateRoute path="/admin/products" component={ProductList} exact />
             <PrivateRoute path="/admin/products/:pId" component={ProductDetail} exact />
             <PrivateRoute path="/admin/products/product/add" component={AddProduct} exact />
             <PrivateRoute path="/admin/products/:pId/edit" component={EditProducts} exact />
+            
             <PrivateRoute path="/admin/home-banner" component={HomeBanner} exact />
             <PrivateRoute path="/admin/home-banner/add" component={AddBanner} exact />
             <PrivateRoute path="/admin/home-banner/:bId/edit" component={EditBanner} exact />
+            
             <PrivateRoute path="/admin/home-pioneers" component={HomePioneers} exact />
             <PrivateRoute path="/admin/home-pioneers/add" component={AddPioneers} exact />
             <PrivateRoute path="/admin/home-pioneers/:pId/edit" component={EditPioneers} exact />
+            
             <PrivateRoute path="/admin/categories" component={Categories} exact />
+            <PrivateRoute path="/admin/categories/add" component={AddCategories} exact />
             <PrivateRoute path="/admin/categories/:cId/edit" component={EditCategories} exact />
-            <PrivateRoute path="/admin/categories/add" component={EditCategories} exact />
+            
             <PrivateRoute path="/admin/sub-categories/:sId" component={SubCategories} exact />
-            <PrivateRoute path="/admin/sub-categories/add" component={EditSubCategory} exact />
+            <PrivateRoute path="/admin/sub-categories/add" component={AddSubCategory} exact />
             <PrivateRoute path="/admin/sub-categories/:sId/edit" component={EditSubCategory} exact />
+            
             <PrivateRoute path="/admin/messages" component={ContactList} exact />
 
             <PublicRoute path="/about" component={About} exact />

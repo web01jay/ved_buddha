@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_URL, IMAGE_URL } from "../../../DataHelpers/API_URL";
+import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
@@ -14,6 +15,8 @@ import DefaultSlider from "../../assets/images/slide01.jpg";
 const BannerSlider = () => {
     const [banners, setBanners] = useState();
     const [isLoading, setIsLoading] = useState()
+
+    SwiperCore.use([Autoplay])
 
     useEffect(() => {
 		setIsLoading(true)
@@ -36,7 +39,7 @@ const BannerSlider = () => {
                     <p className="py-5 text-center">Loading ...</p>
                 ) : (
                     <>
-                        <Swiper navigation={true} modules={[Navigation]} className="mySwiper" loop={true}>
+                        <Swiper navigation={true} modules={[Navigation, Autoplay]} className="mySwiper" loop={true} autoplay={{ delay: 2000 }}>
                             {banners && banners.map( (banner, index) => { 
                                 return (
                                     <SwiperSlide className="item" key={index}>

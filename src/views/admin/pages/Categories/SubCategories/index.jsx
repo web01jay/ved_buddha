@@ -85,7 +85,7 @@ const SubCategories = () => {
                                         </p>
                                     </div> */}
                                     <div className="col-md-4">
-                                        {/* <button className="btn">Edit</button> */}
+                                        <Link to={`/admin/sub-categories/${subCategory.id}/edit`} className="btn">Edit</Link>
                                         <button className="btn ml-2">Delete</button>
                                     </div>
                                 </div>

@@ -1,32 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select';
 
-import { useParams } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from "yup";
-import axios from 'axios';
-import { API_URL } from '../../../../DataHelpers/API_URL';
-import { useHistory } from 'react-router-dom';
-
-const EditSubCategory = () => {
-
-    const { sId } = useParams();
-    const history = useHistory();
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState([]);
-    const [imageFile, setImageFile] = useState();
-    const [subCategory, setSubCategory] = useState();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(`${API_URL}/product-sub-category/${sId}`);
-            setSubCategory(result.data.data);
-            console.log(subCategory, 'sub-category');
-        };
-        fetchData();
-    },[])
-
+const AddSubCategory = () => {
+    const [category, setCategory] = useState(null);
     const categoryOptions = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
@@ -74,7 +50,7 @@ const EditSubCategory = () => {
                             </div>
                             <div className="col-md-8">
                                 <div className="form-group mb-3">
-                                    <Select />
+                                    <Select value={category} onChange={setCategory} options={categoryOptions} />
                                 </div>
                             </div>
                         </div>
@@ -87,4 +63,4 @@ const EditSubCategory = () => {
   )
 }
 
-export default EditSubCategory
+export default AddSubCategory
