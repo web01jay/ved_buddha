@@ -59,7 +59,10 @@ const CategoryProducts = () => {
                         className="product-card"
                       >
                         <div className="image-container">
-                          <img src={`${IMAGE_URL}/products/${product.image}`} alt="product image" />
+                          {product.image == null || product.image == undefined 
+                            ? <img src={Slide01} alt="product" />
+                            : <img src={`${IMAGE_URL}/products/${product.image}`} alt="product" />
+                          }
                         </div>
                         <p className="image-title">{product.name} </p>
                       </Link>

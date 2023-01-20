@@ -13,7 +13,7 @@ const ExploreProducts = () => {
             <div className="row">
               <div className="col-md-4">
                 <Link
-                  to="/products/category/1"
+                  to="/products/category/3"
                   className="category-section d-block"
                 >
                   <div className="image-container">
@@ -24,7 +24,7 @@ const ExploreProducts = () => {
               </div>
               <div className="col-md-4">
                 <Link
-                  to="/products/category/2"
+                  to="/products/category/4"
                   className="category-section d-block"
                 >
                   <div className="image-container">
@@ -35,7 +35,7 @@ const ExploreProducts = () => {
               </div>
               <div className="col-md-4">
                 <Link
-                  to="/products/category/4"
+                  to="/products/category/6"
                   className="category-section d-block"
                 >
                   <div className="image-container">

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { API_URL, IMAGE_URL } from "../../../DataHelpers/API_URL";
 
+import DefaultImage from "../../assets/images/slide01.jpg"
+
 const ProductDetails = () => {
   const { pageId } = useParams();
   
@@ -61,7 +63,10 @@ const ProductDetails = () => {
                   <div className="row">
                     <div className="col-md-6 col-lg-5">
                       <div className="image-container">
-                        <img src={`${IMAGE_URL}/products/${pData.image}`} alt={pData.name} className="mw-100" />
+                        {pData.image == null || pData.image == undefined 
+                          ? <img src={DefaultImage} alt={pData.name} className="mw-100" />
+                          : <img src={`${IMAGE_URL}/products/${pData.image}`} alt={pData.name} className="mw-100" />
+                        }
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-7">

@@ -14,7 +14,7 @@ const AddCategories = () => {
     const [imageFile, setImageFile] = useState();
 
     const categorySchema = Yup.object().shape({
-        
+        categoryName: Yup.string().required('Category Name is required'),
     })
   return (
     <section className='content-section'>
@@ -32,12 +32,35 @@ const AddCategories = () => {
         ) : (
         <div className="content-body">
             <div className="container-fluid">
-                <div className="card">
+                <Formik className="card" initialValues={{categoryName:''}} validationSchema={categorySchema} onSubmit={ async (values) => {
+                    setIsSubmitting(true)
+                    try {
+                        let formData = new FormData();
+
+                        formData.append('categoryName', values.categoryName);
+
+                        if (imageFile) {
+                            formData.append('image', imageFile);
+                        }
+
+                        await axios.post(`${API_URL}/product-category`, formData)
+                            .then(() => {
+                                setIsSubmitting(false)
+                                history.push('/admin/categories')
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            })
+                    } catch(err) {
+                        console.log(err)
+                    }
+                    setIsSubmitting(false)
+                }}>
                     <div className='card-header'>
                         <div className="row">
                             <div className="col-md-12">
                                 <p className="card-title mb-0">
-                                    Category Number:     
+                                    Category:     
                                 </p>
                             </div>
                         </div>    
@@ -70,7 +93,7 @@ const AddCategories = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </Formik>
             </div>
         </div>
         )}

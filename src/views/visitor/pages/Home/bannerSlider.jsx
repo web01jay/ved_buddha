@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import DefaultSlider from "../../assets/images/slide01.jpg";
 
 const BannerSlider = () => {
-    const [banners, setBanners] = useState();
+    const [banners, setBanners] = useState([]);
     const [isLoading, setIsLoading] = useState()
 
     SwiperCore.use([Autoplay])
@@ -30,9 +30,9 @@ const BannerSlider = () => {
 			console.log(banners, "banners")
 			setIsLoading(false)
 		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
   return (
-    <>
         <div className="slider">
             <>
                 {isLoading === true ? (
@@ -49,15 +49,19 @@ const BannerSlider = () => {
                                             <img src={`${IMAGE_URL}/banner/${banner.image}`} alt={banner.title} />
                                         )}
                                         {banner.title.length > 5 ? (
-                                        <div className="item-description ps-3 pe-5 py-5">
+                                            <>
+                                            {banner.link == null || banner.link === "null" ? null :
+                                                <div className="item-description ps-3 pe-5 py-5">
                                             <h1 className="fs-22">{banner.title}</h1>
                                             <h6 className="py-4 fs-18">
                                                 {banner.description}
                                             </h6>
-                                            <a href={banner.link} className="border-bottom text-white">
+                                            <Link to={banner.link} className="border-bottom text-white">
                                                 View More
-                                            </a>
+                                            </Link>
                                         </div>
+                                            }
+                                            </>
                                         ) : (null)}
                                 </SwiperSlide>
                                 )
@@ -67,7 +71,6 @@ const BannerSlider = () => {
                 ) }
             </>
           </div>
-    </>
   )
 }
 
