@@ -12,9 +12,10 @@
         height: 220px;
         img {
             height: 100%;
+            width: 100%;
             min-height: 100%;
             max-width: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             transform: scale(1.1);
             transition: all .3s ease;
