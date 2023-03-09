@@ -56,9 +56,9 @@ const BannerSlider = () => {
                                             <h6 className="py-4 fs-18">
                                                 {banner.description}
                                             </h6>
-                                            <Link to={banner.link} className="border-bottom text-white">
+                                            <a href={banner.link} className="border-bottom text-white">
                                                 View More
-                                            </Link>
+                                            </a>
                                         </div>
                                             }
                                             </>

@@ -28,7 +28,7 @@ const PartnersPioneers = () => {
             <p className="py-5 text-center">Loading ...</p>
         ) : (
             <>
-                <div className="row">
+                <div className="row justify-content-center">
                     {partners && partners.map( (partner, index) => {
                         return (
                             <div className="col-md-3" key={index}>

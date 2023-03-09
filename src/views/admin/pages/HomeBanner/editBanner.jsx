@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
-import { API_URL, BASE_URL } from '../../../DataHelpers/API_URL';
+import { API_URL, BASE_URL, IMAGE_URL } from '../../../DataHelpers/API_URL';
 import { useParams, useHistory } from "react-router-dom";
 
 const EditBanner = () => {
     const history = useHistory();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [currentBanner, setCurrentBanner] = useState(null)
+    const [currentBanner, setCurrentBanner] = useState(null);
     const [imageFile, setImageFile] = useState();
+    const [currentBannerImageUrl, setCurrentBannerImageUrl] = useState('');
+    const [currentBannerImageObject, setCurrentBannerImageObject] = useState(null);
+    const [currentBannerImageBase64, setCurrentBannerImageBase64] = useState('')
     const SUPPORTED_FORMATS  = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
     const bannerSchema = Yup.object().shape({
         bannerTitle: Yup.string().nullable(),
@@ -19,9 +22,48 @@ const EditBanner = () => {
     });
 
 	const { bId } = useParams();
+
     
     useEffect(()=>{
         setIsSubmitting(true)  
+
+        const getImageObject = async (imageName) => {
+            const bannerImageUrl = `${IMAGE_URL}/banner/${imageName}`
+            setCurrentBannerImageUrl(bannerImageUrl)
+            try {
+                const response = await axios({
+                    method: 'get',
+                    url: bannerImageUrl,
+                    responseType: 'blob'
+                })
+                // const response = await fetch(`${bannerImageUrl}`)
+                console.log("get image object response", response)
+                const objectURL = URL.createObjectURL(response.data)
+                const reader = new FileReader();
+                setCurrentBannerImageObject(reader.readAsDataURL(objectURL))
+            } catch (error) {
+                console.log('error from image console', error)
+            }
+        }
+
+        function convertImgToBase64(url, callback) {
+            const img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function() {
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              let dataURL;
+              canvas.width = this.naturalWidth;
+              canvas.height = this.naturalHeight;
+              ctx.drawImage(this, 0, 0);
+              dataURL = canvas.toDataURL('image/jpeg');
+              callback(dataURL);
+            };
+            img.src = url;
+          }
+
+          
+
         // axios call
         // axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
         // axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
@@ -33,12 +75,19 @@ const EditBanner = () => {
         }).then(function (response) {
             setIsSubmitting(true)
             setCurrentBanner(response.data.data)
-            console.log(currentBanner, "banners")
+            console.log(response.data.data, "banners")
+            getImageObject(response.data.data.image)
+            convertImgToBase64(`${IMAGE_URL}/banner/${response.data.data.image}`, function(base64Img) {
+                console.log("base64Img", base64Img);
+                setCurrentBannerImageBase64(base64Img)
+              })
             // console.log(response.data.data)
             // console.log(currentBanner)
             setIsSubmitting(false)
         })
     },[])
+
+    const previewImageStyle = {height: '100px', width: '100px'}
 
     return (<>
     {isSubmitting === true ? (
@@ -81,7 +130,11 @@ const EditBanner = () => {
                             formData.append('title', values.bannerTitle);
                             formData.append('description', values.bannerDescription);
                             formData.append('link', values.bannerLink);
-                            formData.append('image', imageFile);
+                            if (imageFile !== undefined && imageFile !== null) {
+                                formData.append('image', imageFile);
+                            } else if (currentBannerImageBase64 !== undefined && currentBannerImageBase64 !== null ) {
+                                formData.append('image', currentBannerImageBase64);
+                            }
                             
                             await axios.post(`${API_URL}/banner/${bId}`, formData).then(res => {
                                 // check if the request is successful
@@ -141,6 +194,7 @@ const EditBanner = () => {
                                         </div>
                                         <div className="col-md-8">
                                             <div className="form-group mb-3">
+                                                <img src={currentBannerImageBase64} style={previewImageStyle} alt='current object' />
                                                 <Field 
                                                     type="file"
                                                     name="bannerImage"
